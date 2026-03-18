@@ -1,124 +1,65 @@
-# changelog-feed
+# Changelog Feed
 
-A **platform-wide CSA signal engine** that monitors GitHub, Visual Studio, and VS Code changelogs, uses AI to classify relevance for Cloud Solution Architects, and posts only high-value items into Microsoft Teams.
+A static, GitHub Pages-ready changelog aggregator for every **GitHub Copilot-supported IDE**. Entries are scored by importance and include a Copilot feature parity matrix across all IDEs.
 
-## Architecture
+## Sources
 
-```
-[Scheduler / Webhook]
-        ↓
-[Feed Ingestion]           – GitHub changelog RSS, VS Code release notes, Visual Studio release notes
-        ↓
-[Normalizer + Dedupe]      – SQLite-backed state store prevents re-posting
-        ↓
-[Rule Engine]              – Deterministic hard rules (security, breaking changes, deprecations always post; UI polish never posts)
-        ↓
-[AI Classifier]            – OpenAI / Azure OpenAI rates CSA relevance with structured output
-        ↓
-[Post Decision Engine]     – Combines rule + AI signal to decide what to post
-        ↓
-[Teams Workflow Webhook]   – Adaptive Card message to a Teams channel
-```
+| Source | Feed | What it tracks |
+|---|---|---|
+| **GitHub Platform** | RSS | Copilot, Actions, Security, Enterprise, and more |
+| **VS Code** | Page scrape | Monthly release notes — editor, extensions, Copilot |
+| **Visual Studio** | Page scrape | GA and Preview release notes |
+| **JetBrains** | Blog RSS | IntelliJ, PyCharm, WebStorm, and all JetBrains IDEs |
+| **Xcode** | Apple RSS | Xcode releases (filtered from Apple developer news) |
+| **Neovim** | GitHub API | Neovim releases from `neovim/neovim` |
+| **Eclipse** | Planet RSS | Eclipse IDE-related posts |
+
+Items mentioning **Copilot** are automatically tagged across all sources for cross-cutting filtering.
 
 ## Quick Start
 
-### 1. Install dependencies
-
 ```bash
 pip install -r requirements.txt
+
+# Build the static data
+python -m src.build
+
+# Preview locally
+cd docs && python -m http.server
 ```
 
-### 2. Configure environment
+Open [http://localhost:8000](http://localhost:8000).
 
-```bash
-cp .env.example .env
-# Edit .env with your API keys and Teams webhook URL
-```
+## GitHub Pages
 
-### 3. Run
+1. Push to GitHub
+2. Go to **Settings → Pages** → set source to **Deploy from branch**, branch `main`, folder `/docs`
+3. The GitHub Actions workflow rebuilds `data.json` every 6 hours automatically
 
-```bash
-# Dry run (ingest + classify, no posting)
-python -m src.main --dry-run
+## Features
 
-# Live run
-python -m src.main
-```
+- **Importance scoring** — each entry gets a 0–100 score based on keywords (security, breaking changes, Copilot, new features, etc.)
+- **Severity bands** — Critical (75+), High (50–74), Medium (25–49), Low (<25) with color-coded badges
+- **Feature parity matrix** — always-visible table showing Copilot feature support across VS Code, VS Code Insiders, Visual Studio, JetBrains, Neovim, Eclipse, and Xcode
+- **Filter by source** — GitHub, Copilot, VS Code, Visual Studio, JetBrains, Xcode, Neovim, Eclipse
+- **Search** — instant client-side filtering (press `/` to focus, `Esc` to clear)
+- **Dark mode** — follows system preference
+- **Zero dependencies at runtime** — the page is pure HTML/CSS/JS reading a static JSON file
 
-## Environment Variables
-
-| Variable | Description |
-|---|---|
-| `OPENAI_API_KEY` | OpenAI API key (standard OpenAI) |
-| `AZURE_OPENAI_API_KEY` | Azure OpenAI API key |
-| `AZURE_OPENAI_ENDPOINT` | Azure OpenAI endpoint URL |
-| `AZURE_OPENAI_DEPLOYMENT` | Azure OpenAI deployment name |
-| `OPENAI_MODEL` | Model name for OpenAI (default: `gpt-4o`) |
-| `TEAMS_WEBHOOK_URL` | Teams Workflows webhook URL |
-| `MIN_RELEVANCE` | Minimum relevance to post: `high` (default), `medium`, or `low` |
-| `STATE_DB_PATH` | SQLite state file path (default: `.changelog_feed_state.db`) |
-
-## Signal Sources
-
-| Source | Feed |
-|---|---|
-| **GitHub Platform** | RSS feed from `github.blog/changelog` – covers Copilot, Actions, Security, Enterprise |
-| **VS Code** | Monthly release notes pages – parsed into per-section items |
-| **Visual Studio** | Microsoft Learn release notes pages – GA and Preview channels |
-
-## AI Classification
-
-Items not covered by hard rules are sent to the AI classifier, which returns structured output:
-
-```json
-{
-  "csa_relevance": "high | medium | low",
-  "why_it_matters": "One sentence for a CSA",
-  "customer_impact": "none | situational | broad",
-  "conversation_trigger": true,
-  "categories": ["security", "copilot"],
-  "confidence": 0.92
-}
-```
-
-AI supplies **inputs** (scoring + explanation), not the final posting decision.
-
-## Deterministic Guardrails
-
-**Always post** (no AI veto): security fixes, CVEs, breaking changes, deprecations, retirements, end-of-life notices, enterprise policy changes.
-
-**Never post**: UI polish, emoji packs, typo fixes, dark mode changes, minor cosmetic updates.
-
-## Teams Message Format
+## Project Structure
 
 ```
-🔴 GitHub Platform Update – Security
-
-**What changed:**
-• Critical vulnerability patched in token scoping
-
-**Why this matters for CSAs:**
-• Impacts enterprise security posture and compliance reviews
-
-**Customer impact:**
-• Broad – affects most customers
-
-**Tags:** `security` `breaking-change`
-
-🔗 Read more (rule: always post)
+src/
+  build.py      Entry point: python -m src.build
+  main.py       Build logic (fetches feeds → scores → writes JSON)
+  feeds.py      Feed fetchers for all 7 sources
+  models.py     Pydantic model (ChangeEntry with score/severity)
+  scorer.py     Keyword-based importance scoring
+  parity.py     Copilot feature parity matrix data
+docs/
+  index.html    Static page (served by GitHub Pages)
+  data.json     Generated feed data (committed by CI)
+.github/
+  workflows/
+    build.yml   Rebuilds data.json every 6 hours
 ```
-
-## Running Tests
-
-```bash
-pip install responses pytest pytest-mock
-pytest tests/ -v
-```
-
-## Deployment
-
-The pipeline is a single Python call (`run_pipeline()`) and runs cleanly as:
-
-- **Azure Function** (timer trigger for scheduled runs, HTTP trigger for on-demand)
-- **Container App** with a cron sidecar
-- **GitHub Actions** workflow on a schedule

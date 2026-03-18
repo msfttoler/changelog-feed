@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog Feed</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f5f7; --surface: #fff; --surface-2: #fafafa;
+      --text: #1d1d1f; --text-2: #86868b; --text-3: #aeaeb2;
+      --border: #d2d2d7; --border-2: #e5e5ea;
+      --github: #f78166; --vscode: #007acc; --vscode-ins: #24943e;
+      --vs: #68217a; --jetbrains: #fe315d; --xcode: #147efb;
+      --neovim: #57a143; --eclipse: #2c2255; --copilot: #8b5cf6;
+      --sev-crit: #ff3b30; --sev-high: #ff9500; --sev-med: #ffcc00; --sev-low: #34c759;
+      --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,.06); --shadow-h: 0 4px 14px rgba(0,0,0,.08);
+      --max-w: 800px; --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) { :root {
+      --bg: #000; --surface: #1c1c1e; --surface-2: #2c2c2e;
+      --text: #f5f5f7; --text-2: #8e8e93; --text-3: #636366;
+      --border: #38383a; --border-2: #48484a;
+      --shadow: 0 1px 3px rgba(0,0,0,.3); --shadow-h: 0 4px 14px rgba(0,0,0,.4);
+      --sev-crit: #ff453a; --sev-high: #ff9f0a; --sev-med: #ffd60a; --sev-low: #30d158;
+    }}
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+
+    /* ── Header ─────────────────────────────────── */
+    header { text-align: center; padding: 2.5rem 1.5rem .5rem; }
+    header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -.025em; }
+    header p { color: var(--text-2); font-size: .85rem; margin-top: .2rem; }
+
+    /* ── Parity matrix ──────────────────────────── */
+    .parity-wrap { max-width: var(--max-w); margin: .75rem auto 0; padding: 0 1.5rem; }
+    .parity-toggle {
+      display: flex; align-items: center; gap: .4rem; cursor: pointer;
+      font-size: .75rem; font-weight: 600; color: var(--text-2);
+      text-transform: uppercase; letter-spacing: .04em;
+      border: none; background: none; font-family: var(--font); padding: .25rem 0;
+    }
+    .parity-toggle .arrow { transition: transform .2s; font-size: .6rem; }
+    .parity-toggle.open .arrow { transform: rotate(90deg); }
+    .parity-box {
+      overflow: hidden; max-height: 0; transition: max-height .35s ease;
+    }
+    .parity-box.open { max-height: 600px; }
+    .parity-table {
+      width: 100%; border-collapse: collapse; font-size: .72rem;
+      margin: .4rem 0 .75rem; background: var(--surface); border-radius: 8px;
+      overflow: hidden; box-shadow: var(--shadow);
+    }
+    .parity-table th, .parity-table td {
+      padding: .35rem .45rem; text-align: center; border-bottom: 1px solid var(--border-2);
+    }
+    .parity-table th { background: var(--surface-2); color: var(--text-2); font-weight: 600; }
+    .parity-table th:first-child, .parity-table td:first-child { text-align: left; font-weight: 500; min-width: 120px; }
+    .p-yes { color: var(--sev-low); }
+    .p-partial { color: var(--sev-med); }
+    .p-no { color: var(--text-3); }
+
+    /* ── Controls ───────────────────────────────── */
+    .controls {
+      position: sticky; top: 0; z-index: 100; background: var(--bg);
+      padding: .75rem 1.5rem .6rem; max-width: var(--max-w); margin: 0 auto;
+    }
+    .controls::after { content: ''; display: block; height: 1px; background: var(--border); margin-top: .6rem; opacity: .4; }
+    .search { position: relative; margin-bottom: .5rem; }
+    .search svg { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--text-2); pointer-events: none; }
+    .search input {
+      width: 100%; padding: .55rem .7rem .55rem 2.1rem; border: 1px solid var(--border);
+      border-radius: 8px; background: var(--surface); color: var(--text);
+      font-size: .85rem; font-family: var(--font); outline: none; transition: border-color .2s;
+    }
+    .search input:focus { border-color: var(--vscode); }
+    .search input::placeholder { color: var(--text-2); }
+    .search .hint {
+      position: absolute; right: .7rem; top: 50%; transform: translateY(-50%);
+      font-size: .6rem; color: var(--text-2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0 .35rem; pointer-events: none;
+    }
+    .filters { display: flex; gap: .3rem; flex-wrap: wrap; }
+    .f-btn {
+      padding: .25rem .7rem; border: 1px solid var(--border); border-radius: 100px;
+      background: transparent; color: var(--text-2); font-size: .75rem;
+      font-family: var(--font); cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    .f-btn:hover { border-color: var(--text-2); color: var(--text); }
+    .f-btn.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .f-btn .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 3px; vertical-align: middle; }
+
+    /* ── Entries ─────────────────────────────────── */
+    .entries { max-width: var(--max-w); margin: 0 auto; padding: .5rem 1.5rem 3rem; }
+    .card {
+      background: var(--surface); border-radius: var(--radius); padding: .9rem 1.1rem;
+      margin-bottom: .45rem; box-shadow: var(--shadow); border-left: 3px solid var(--border);
+      transition: box-shadow .2s, transform .15s;
+    }
+    .card:hover { box-shadow: var(--shadow-h); transform: translateY(-1px); }
+    .card[data-src="github"]       { border-left-color: var(--github); }
+    .card[data-src="vscode"]       { border-left-color: var(--vscode); }
+    .card[data-src="visualstudio"] { border-left-color: var(--vs); }
+    .card[data-src="jetbrains"]    { border-left-color: var(--jetbrains); }
+    .card[data-src="xcode"]        { border-left-color: var(--xcode); }
+    .card[data-src="neovim"]       { border-left-color: var(--neovim); }
+    .card[data-src="eclipse"]      { border-left-color: var(--eclipse); }
+    .card-top { display: flex; align-items: center; gap: .35rem; margin-bottom: .3rem; flex-wrap: wrap; }
+    .badge {
+      font-size: .6rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+      padding: .1rem .4rem; border-radius: 100px; color: #fff; white-space: nowrap;
+    }
+    .badge.github       { background: var(--github); }
+    .badge.vscode       { background: var(--vscode); }
+    .badge.visualstudio { background: var(--vs); }
+    .badge.jetbrains    { background: var(--jetbrains); }
+    .badge.xcode        { background: var(--xcode); }
+    .badge.neovim       { background: var(--neovim); }
+    .badge.eclipse      { background: var(--eclipse); }
+    .badge.copilot      { background: var(--copilot); }
+    .score-badge {
+      font-size: .6rem; font-weight: 700; padding: .1rem .4rem;
+      border-radius: 100px; margin-left: auto; white-space: nowrap;
+    }
+    .score-badge.critical { background: var(--sev-crit); color: #fff; }
+    .score-badge.high     { background: var(--sev-high); color: #fff; }
+    .score-badge.medium   { background: var(--sev-med); color: #1d1d1f; }
+    .score-badge.low      { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
+    .card-title { font-size: .9rem; font-weight: 600; line-height: 1.35; margin-bottom: .2rem; }
+    .card-title a { color: var(--text); text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: .78rem; color: var(--text-2); line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-tags { display: flex; gap: .25rem; flex-wrap: wrap; margin-top: .35rem; }
+    .tag { font-size: .62rem; padding: .05rem .35rem; border-radius: 4px; background: var(--bg); color: var(--text-2); }
+
+    /* ── States ──────────────────────────────────── */
+    .loading, .empty { text-align: center; padding: 3rem 1rem; color: var(--text-2); font-size: .85rem; }
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--vscode); border-radius: 50%; animation: spin .7s linear infinite; margin-bottom: .4rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .status { text-align: center; font-size: .68rem; color: var(--text-2); padding: .5rem; }
+
+    /* ── Legend ──────────────────────────────────── */
+    .legend { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; font-size: .65rem; color: var(--text-2); padding: .25rem 0 .5rem; }
+    .legend span { display: flex; align-items: center; gap: .2rem; }
+    .legend .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+
+    @media (max-width: 640px) {
+      header { padding: 1.75rem 1rem .4rem; }
+      .controls { padding: .6rem 1rem .4rem; }
+      .entries { padding: .4rem 1rem 2rem; }
+      .parity-wrap { padding: 0 1rem; }
+      .parity-table { font-size: .65rem; }
+      .parity-table th, .parity-table td { padding: .25rem .3rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Changelog Feed</h1>
+    <p>GitHub platform &amp; IDE changelogs &middot; scored by importance</p>
+  </header>
+
+  <!-- Parity matrix (always visible in every view) -->
+  <div class="parity-wrap">
+    <button class="parity-toggle open" id="parityToggle" aria-expanded="true">
+      <span class="arrow">&#9654;</span> Copilot Feature Parity
+    </button>
+    <div class="parity-box open" id="parityBox">
+      <table class="parity-table" id="parityTable"><tbody><tr><td>Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--sev-crit)"></span> Critical 75+</span>
+      <span><span class="swatch" style="background:var(--sev-high)"></span> High 50–74</span>
+      <span><span class="swatch" style="background:var(--sev-med)"></span> Medium 25–49</span>
+      <span><span class="swatch" style="background:var(--sev-low)"></span> Low &lt;25</span>
+    </div>
+    <div class="search">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.2" y1="10.2" x2="14.5" y2="14.5"/></svg>
+      <input type="search" id="search" placeholder="Search changelogs…" autocomplete="off">
+      <span class="hint">/</span>
+    </div>
+    <div class="filters" id="filters">
+      <button class="f-btn on" data-f="all">All</button>
+      <button class="f-btn" data-f="github"><span class="dot" style="background:var(--github)"></span>GitHub</button>
+      <button class="f-btn" data-f="copilot"><span class="dot" style="background:var(--copilot)"></span>Copilot</button>
+      <button class="f-btn" data-f="vscode"><span class="dot" style="background:var(--vscode)"></span>VS Code</button>
+      <button class="f-btn" data-f="visualstudio"><span class="dot" style="background:var(--vs)"></span>Visual Studio</button>
+      <button class="f-btn" data-f="jetbrains"><span class="dot" style="background:var(--jetbrains)"></span>JetBrains</button>
+      <button class="f-btn" data-f="xcode"><span class="dot" style="background:var(--xcode)"></span>Xcode</button>
+      <button class="f-btn" data-f="neovim"><span class="dot" style="background:var(--neovim)"></span>Neovim</button>
+      <button class="f-btn" data-f="eclipse"><span class="dot" style="background:var(--eclipse)"></span>Eclipse</button>
+    </div>
+  </div>
+
+  <div class="entries" id="entries">
+    <div class="loading"><div class="spinner"></div><br>Loading changelogs…</div>
+  </div>
+  <div class="status" id="status"></div>
+
+<script>
+/* ── Helpers ────────────────────────────────────── */
+const SRC = {
+  github:'GitHub', vscode:'VS Code', visualstudio:'Visual Studio',
+  jetbrains:'JetBrains', xcode:'Xcode', neovim:'Neovim', eclipse:'Eclipse'
+};
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function safeHref(url) {
+  try { const u = new URL(url); return ['http:','https:'].includes(u.protocol) ? u.href : '#'; }
+  catch { return '#'; }
+}
+
+function ago(iso) {
+  const s = Math.floor((Date.now() - new Date(iso)) / 1000);
+  if (s < 60) return 'just now';
+  const u = [[31536000,'y'],[2592000,'mo'],[86400,'d'],[3600,'h'],[60,'m']];
+  for (const [n,l] of u) { const c = Math.floor(s/n); if (c >= 1) return c + l + ' ago'; }
+  return 'just now';
+}
+
+/* ── State ──────────────────────────────────────── */
+let all = [], parity = null, filter = 'all', query = '';
+
+/* ── Parity matrix toggle ───────────────────────── */
+const parityToggle = document.getElementById('parityToggle');
+const parityBox = document.getElementById('parityBox');
+parityToggle.addEventListener('click', () => {
+  const open = parityBox.classList.toggle('open');
+  parityToggle.classList.toggle('open', open);
+  parityToggle.setAttribute('aria-expanded', open);
+});
+
+/* ── Render parity matrix ───────────────────────── */
+function renderParity() {
+  if (!parity) return;
+  const t = document.getElementById('parityTable');
+  const ides = parity.ides;
+  let h = '<thead><tr><th>Feature</th>' + ides.map(i => '<th>' + esc(i) + '</th>').join('') + '</tr></thead><tbody>';
+  for (const f of parity.features) {
+    h += '<tr><td>' + esc(f.name) + '</td>';
+    for (const ide of ides) {
+      const v = f.support[ide];
+      if (v === true) h += '<td class="p-yes">&#10003;</td>';
+      else if (v === 'partial') h += '<td class="p-partial">&#9681;</td>';
+      else h += '<td class="p-no">&#10005;</td>';
+    }
+    h += '</tr>';
+  }
+  h += '</tbody>';
+  t.innerHTML = h;
+}
+
+/* ── Render entries ─────────────────────────────── */
+function render() {
+  const q = query.toLowerCase();
+  const list = all.filter(e => {
+    if (filter === 'copilot' && !e.is_copilot) return false;
+    if (filter !== 'all' && filter !== 'copilot' && e.source !== filter) return false;
+    if (q && !e.title.toLowerCase().includes(q) && !e.description.toLowerCase().includes(q)
+        && !e.tags.some(t => t.includes(q))) return false;
+    return true;
+  });
+  const box = document.getElementById('entries');
+  if (!list.length) { box.innerHTML = '<div class="empty">No entries match your filter</div>'; updateStatus(list.length); return; }
+
+  box.innerHTML = list.map(e => `
+    <div class="card" data-src="${esc(e.source)}">
+      <div class="card-top">
+        <span class="badge ${esc(e.source)}">${esc(SRC[e.source] || e.source)}</span>
+        ${e.is_copilot ? '<span class="badge copilot">Copilot</span>' : ''}
+        <span class="score-badge ${esc(e.severity)}">${e.score}</span>
+      </div>
+      <div class="card-title"><a href="${safeHref(e.link)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>
+      ${e.description ? `<div class="card-desc">${esc(e.description)}</div>` : ''}
+      <div style="display:flex;align-items:center;gap:.5rem;margin-top:.3rem;flex-wrap:wrap">
+        ${e.tags.length ? `<div class="card-tags">${e.tags.slice(0,6).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+        <span style="font-size:.65rem;color:var(--text-3);margin-left:auto">${ago(e.published)}</span>
+      </div>
+    </div>
+  `).join('');
+  updateStatus(list.length);
+}
+
+function updateStatus(shown) {
+  const st = document.getElementById('status');
+  const total = all.length;
+  const ts = window._builtAt ? new Date(window._builtAt).toLocaleString() : '';
+  st.textContent = (shown < total ? shown + ' of ' + total : '' + total) + ' entries' + (ts ? ' \u00b7 Built ' + ts : '');
+}
+
+/* ── Filters ────────────────────────────────────── */
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.f-btn');
+  if (!btn) return;
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  filter = btn.dataset.f;
+  render();
+});
+
+/* ── Search ─────────────────────────────────────── */
+const searchEl = document.getElementById('search');
+searchEl.addEventListener('input', () => { query = searchEl.value; render(); });
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== searchEl) { e.preventDefault(); searchEl.focus(); }
+  if (e.key === 'Escape' && document.activeElement === searchEl) { searchEl.value = ''; query = ''; render(); searchEl.blur(); }
+});
+
+/* ── Fetch ──────────────────────────────────────── */
+async function load() {
+  try {
+    const res = await fetch('data.json');
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    all = data.entries || [];
+    parity = data.parity || null;
+    window._builtAt = data.built_at;
+    renderParity();
+    render();
+  } catch (err) {
+    document.getElementById('entries').innerHTML =
+      '<div class="empty">Failed to load data.json &mdash; run <code>python -m src.build</code> first</div>';
+  }
+}
+
+load();
+</script>
+</body>
+</html>
