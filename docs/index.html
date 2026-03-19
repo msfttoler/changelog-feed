@@ -23,7 +23,7 @@
       --shadow: 0 1px 3px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.06);
       --shadow-md: 0 4px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
       --shadow-lg: 0 10px 30px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
-      --max-w: 860px;
+      --max-w: 1100px;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       --anim: cubic-bezier(.22,1,.36,1);
     }
@@ -52,7 +52,7 @@
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.25rem; }
 
     .parity-section { margin-top: -1rem; position: relative; z-index: 10; }
-    .parity-card { background: var(--surface); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-2); }
+    .parity-card { background: var(--surface); border-radius: var(--radius); padding: 1.5rem 1.75rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-2); }
     .parity-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
     .parity-header h2 { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: .45rem; }
     .parity-header h2 .copilot-logo { width: 22px; height: 22px; }
@@ -61,15 +61,15 @@
     .parity-body { max-height: 0; overflow: hidden; transition: max-height .4s var(--anim); }
     .parity-body.open { max-height: 3000px; }
 
-    .parity-cat { margin-top: 1rem; }
+    .parity-cat { margin-top: 1.25rem; }
     .parity-cat:first-child { margin-top: .75rem; }
-    .parity-cat-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: .35rem; padding-left: .15rem; }
-    .parity-table { width: 100%; border-collapse: collapse; font-size: .73rem; background: var(--surface-2); border-radius: var(--radius-sm); overflow: hidden; }
-    .parity-table thead th { background: var(--surface-3); color: var(--text-2); font-weight: 600; padding: .4rem .35rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .03em; }
+    .parity-cat-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: .4rem; padding-left: .15rem; }
+    .parity-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: .78rem; background: var(--surface-2); border-radius: var(--radius-sm); overflow: hidden; }
+    .parity-table thead th { background: var(--surface-3); color: var(--text-2); font-weight: 600; padding: .5rem .4rem; font-size: .67rem; text-transform: uppercase; letter-spacing: .03em; }
     .parity-table thead th .ide-logo { width: 18px; height: 18px; display: block; margin: 0 auto .2rem; border-radius: 4px; object-fit: contain; }
-    .parity-table td { padding: .4rem .35rem; text-align: center; border-bottom: 1px solid var(--border-2); }
+    .parity-table td { padding: .5rem .4rem; text-align: center; border-bottom: 1px solid var(--border-2); }
     .parity-table tr:last-child td { border-bottom: none; }
-    .parity-table td:first-child { text-align: left; font-weight: 500; min-width: 140px; color: var(--text); padding-left: .6rem; }
+    .parity-table td:first-child { text-align: left; font-weight: 500; color: var(--text); padding-left: .6rem; }
     .p-yes { color: var(--sev-low); font-weight: 600; font-size: .85rem; }
     .p-partial { color: var(--sev-high); font-weight: 600; font-size: .85rem; }
     .p-no { color: var(--text-3); font-size: .8rem; }
@@ -302,7 +302,10 @@ var IDE_LOGOS = {
 };
 
 function buildTable(ides, features) {
-  var h = '<table class="parity-table"><thead><tr><th style="text-align:left">Feature</th>';
+  var colW = Math.floor(76 / ides.length);
+  var h = '<table class="parity-table"><colgroup><col style="width:24%">';
+  for (var c = 0; c < ides.length; c++) h += '<col style="width:' + colW + '%">';
+  h += '</colgroup><thead><tr><th style="text-align:left">Feature</th>';
   for (var i = 0; i < ides.length; i++) {
     var logo = IDE_LOGOS[ides[i]];
     h += '<th>' + (logo ? '<img class="ide-logo" src="' + logo + '" alt="' + esc(ides[i]) + '" loading="lazy">' : '') + esc(ides[i]) + '</th>';
