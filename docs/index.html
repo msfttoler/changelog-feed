@@ -4,333 +4,366 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Changelog Feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #f5f5f7; --surface: #fff; --surface-2: #fafafa;
-      --text: #1d1d1f; --text-2: #86868b; --text-3: #aeaeb2;
-      --border: #d2d2d7; --border-2: #e5e5ea;
+      --bg: #f8f9fb; --bg-2: #eef0f4;
+      --surface: #fff; --surface-2: #f3f4f7; --surface-3: #e8eaef;
+      --text: #111827; --text-2: #6b7280; --text-3: #9ca3af;
+      --border: #e2e5eb; --border-2: #eceef2;
+      --accent: #6d5cff; --accent-2: #8b7aff; --accent-glow: rgba(109,92,255,.12);
       --github: #f78166; --vscode: #007acc; --vscode-ins: #24943e;
       --vs: #68217a; --jetbrains: #fe315d; --xcode: #147efb;
       --neovim: #57a143; --eclipse: #2c2255; --copilot: #8b5cf6;
-      --sev-crit: #ff3b30; --sev-high: #ff9500; --sev-med: #ffcc00; --sev-low: #34c759;
-      --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,.06); --shadow-h: 0 4px 14px rgba(0,0,0,.08);
-      --max-w: 800px; --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --sev-crit: #ef4444; --sev-high: #f59e0b; --sev-med: #eab308; --sev-low: #22c55e;
+      --radius: 14px; --radius-sm: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+      --max-w: 860px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --anim: cubic-bezier(.22,1,.36,1);
     }
     @media (prefers-color-scheme: dark) { :root {
-      --bg: #000; --surface: #1c1c1e; --surface-2: #2c2c2e;
-      --text: #f5f5f7; --text-2: #8e8e93; --text-3: #636366;
-      --border: #38383a; --border-2: #48484a;
-      --shadow: 0 1px 3px rgba(0,0,0,.3); --shadow-h: 0 4px 14px rgba(0,0,0,.4);
-      --sev-crit: #ff453a; --sev-high: #ff9f0a; --sev-med: #ffd60a; --sev-low: #30d158;
+      --bg: #0c0e14; --bg-2: #141722;
+      --surface: #1a1d28; --surface-2: #222633; --surface-3: #2c3040;
+      --text: #f0f2f5; --text-2: #8b91a0; --text-3: #555b6e;
+      --border: #2a2e3d; --border-2: #333849;
+      --accent-glow: rgba(109,92,255,.18);
+      --shadow: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
+      --shadow-md: 0 4px 12px rgba(0,0,0,.3), 0 1px 3px rgba(0,0,0,.15);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.2);
+      --sev-crit: #f87171; --sev-high: #fbbf24; --sev-med: #facc15; --sev-low: #4ade80;
     }}
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
 
-    /* ── Header ─────────────────────────────────── */
-    header { text-align: center; padding: 2.5rem 1.5rem .5rem; }
-    header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -.025em; }
-    header p { color: var(--text-2); font-size: .85rem; margin-top: .2rem; }
+    .hero { position: relative; overflow: hidden; background: linear-gradient(135deg, #6d5cff 0%, #a78bfa 50%, #c084fc 100%); padding: 2.75rem 1.5rem 2rem; text-align: center; color: #fff; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 80%, rgba(255,255,255,.12) 0%, transparent 60%), radial-gradient(circle at 70% 20%, rgba(255,255,255,.08) 0%, transparent 50%); }
+    .hero h1 { position: relative; font-size: 2rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.2; }
+    .hero p { position: relative; font-size: .9rem; opacity: .85; margin-top: .35rem; font-weight: 400; }
+    .hero .built-tag { position: relative; display: inline-block; margin-top: .6rem; font-size: .68rem; font-weight: 500; opacity: .65; background: rgba(255,255,255,.15); padding: .15rem .65rem; border-radius: 100px; }
 
-    /* ── Parity matrix ──────────────────────────── */
-    .parity-wrap { max-width: var(--max-w); margin: .75rem auto 0; padding: 0 1.5rem; }
-    .parity-toggle {
-      display: flex; align-items: center; gap: .4rem; cursor: pointer;
-      font-size: .75rem; font-weight: 600; color: var(--text-2);
-      text-transform: uppercase; letter-spacing: .04em;
-      border: none; background: none; font-family: var(--font); padding: .25rem 0;
-    }
-    .parity-toggle .arrow { transition: transform .2s; font-size: .6rem; }
-    .parity-toggle.open .arrow { transform: rotate(90deg); }
-    .parity-box {
-      overflow: hidden; max-height: 0; transition: max-height .35s ease;
-    }
-    .parity-box.open { max-height: 600px; }
-    .parity-table {
-      width: 100%; border-collapse: collapse; font-size: .72rem;
-      margin: .4rem 0 .75rem; background: var(--surface); border-radius: 8px;
-      overflow: hidden; box-shadow: var(--shadow);
-    }
-    .parity-table th, .parity-table td {
-      padding: .35rem .45rem; text-align: center; border-bottom: 1px solid var(--border-2);
-    }
-    .parity-table th { background: var(--surface-2); color: var(--text-2); font-weight: 600; }
-    .parity-table th:first-child, .parity-table td:first-child { text-align: left; font-weight: 500; min-width: 120px; }
-    .p-yes { color: var(--sev-low); }
-    .p-partial { color: var(--sev-med); }
-    .p-no { color: var(--text-3); }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.25rem; }
 
-    /* ── Controls ───────────────────────────────── */
-    .controls {
-      position: sticky; top: 0; z-index: 100; background: var(--bg);
-      padding: .75rem 1.5rem .6rem; max-width: var(--max-w); margin: 0 auto;
-    }
-    .controls::after { content: ''; display: block; height: 1px; background: var(--border); margin-top: .6rem; opacity: .4; }
-    .search { position: relative; margin-bottom: .5rem; }
-    .search svg { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--text-2); pointer-events: none; }
-    .search input {
-      width: 100%; padding: .55rem .7rem .55rem 2.1rem; border: 1px solid var(--border);
-      border-radius: 8px; background: var(--surface); color: var(--text);
-      font-size: .85rem; font-family: var(--font); outline: none; transition: border-color .2s;
-    }
-    .search input:focus { border-color: var(--vscode); }
-    .search input::placeholder { color: var(--text-2); }
-    .search .hint {
-      position: absolute; right: .7rem; top: 50%; transform: translateY(-50%);
-      font-size: .6rem; color: var(--text-2); border: 1px solid var(--border);
-      border-radius: 4px; padding: 0 .35rem; pointer-events: none;
-    }
+    .parity-section { margin-top: -1rem; position: relative; z-index: 10; }
+    .parity-card { background: var(--surface); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-2); }
+    .parity-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .parity-header h2 { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: .45rem; }
+    .parity-header h2 .icon { font-size: 1.1rem; }
+    .parity-chevron { width: 20px; height: 20px; transition: transform .25s var(--anim); color: var(--text-2); flex-shrink: 0; }
+    .parity-header.open .parity-chevron { transform: rotate(180deg); }
+    .parity-body { max-height: 0; overflow: hidden; transition: max-height .4s var(--anim); }
+    .parity-body.open { max-height: 3000px; }
+
+    .parity-cat { margin-top: 1rem; }
+    .parity-cat:first-child { margin-top: .75rem; }
+    .parity-cat-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: .35rem; padding-left: .15rem; }
+    .parity-table { width: 100%; border-collapse: collapse; font-size: .73rem; background: var(--surface-2); border-radius: var(--radius-sm); overflow: hidden; }
+    .parity-table thead th { background: var(--surface-3); color: var(--text-2); font-weight: 600; padding: .4rem .35rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .03em; }
+    .parity-table td { padding: .4rem .35rem; text-align: center; border-bottom: 1px solid var(--border-2); }
+    .parity-table tr:last-child td { border-bottom: none; }
+    .parity-table td:first-child { text-align: left; font-weight: 500; min-width: 140px; color: var(--text); padding-left: .6rem; }
+    .p-yes { color: var(--sev-low); font-weight: 600; font-size: .85rem; }
+    .p-partial { color: var(--sev-high); font-weight: 600; font-size: .85rem; }
+    .p-no { color: var(--text-3); font-size: .8rem; }
+
+    .parity-legend { display: flex; gap: 1.25rem; justify-content: flex-end; flex-wrap: wrap; font-size: .65rem; color: var(--text-2); padding: .6rem .15rem 0; }
+    .parity-legend span { display: flex; align-items: center; gap: .3rem; }
+
+    .severity-bar { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; font-size: .68rem; color: var(--text-2); padding: .8rem 0 .5rem; }
+    .severity-bar span { display: flex; align-items: center; gap: .25rem; font-weight: 500; }
+    .severity-bar .pip { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+
+    .controls-bar { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border-2); padding: .65rem 0; margin-top: .75rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    @supports (backdrop-filter: blur(12px)) { .controls-bar { background: color-mix(in srgb, var(--bg) 80%, transparent); } }
+    .controls-inner { display: flex; flex-direction: column; gap: .5rem; }
+
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; left: .75rem; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
+    .search-wrap input { width: 100%; padding: .6rem .75rem .6rem 2.2rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); font-size: .85rem; font-family: var(--font); outline: none; transition: border-color .2s, box-shadow .2s; }
+    .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .search-wrap input::placeholder { color: var(--text-3); }
+    .search-wrap .kbd-hint { position: absolute; right: .65rem; top: 50%; transform: translateY(-50%); font-size: .55rem; font-weight: 600; color: var(--text-3); border: 1px solid var(--border); border-radius: 4px; padding: .05rem .35rem; pointer-events: none; font-family: var(--font); }
+
     .filters { display: flex; gap: .3rem; flex-wrap: wrap; }
-    .f-btn {
-      padding: .25rem .7rem; border: 1px solid var(--border); border-radius: 100px;
-      background: transparent; color: var(--text-2); font-size: .75rem;
-      font-family: var(--font); cursor: pointer; transition: all .15s; white-space: nowrap;
-    }
-    .f-btn:hover { border-color: var(--text-2); color: var(--text); }
-    .f-btn.on { background: var(--text); color: var(--bg); border-color: var(--text); }
-    .f-btn .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 3px; vertical-align: middle; }
+    .f-btn { padding: .3rem .75rem; border: 1px solid var(--border); border-radius: 100px; background: transparent; color: var(--text-2); font-size: .75rem; font-family: var(--font); font-weight: 500; cursor: pointer; transition: all .2s var(--anim); white-space: nowrap; }
+    .f-btn:hover { border-color: var(--accent); color: var(--text); background: var(--accent-glow); }
+    .f-btn.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .f-btn .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
 
-    /* ── Entries ─────────────────────────────────── */
-    .entries { max-width: var(--max-w); margin: 0 auto; padding: .5rem 1.5rem 3rem; }
-    .card {
-      background: var(--surface); border-radius: var(--radius); padding: .9rem 1.1rem;
-      margin-bottom: .45rem; box-shadow: var(--shadow); border-left: 3px solid var(--border);
-      transition: box-shadow .2s, transform .15s;
-    }
-    .card:hover { box-shadow: var(--shadow-h); transform: translateY(-1px); }
-    .card[data-src="github"]       { border-left-color: var(--github); }
-    .card[data-src="vscode"]       { border-left-color: var(--vscode); }
+    .entries { padding-top: .5rem; padding-bottom: 3rem; }
+    .card { background: var(--surface); border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: .55rem; box-shadow: var(--shadow); border: 1px solid var(--border-2); border-left: 4px solid var(--border); transition: box-shadow .25s var(--anim), transform .2s var(--anim), border-color .2s; }
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .card[data-src="github"] { border-left-color: var(--github); }
+    .card[data-src="vscode"] { border-left-color: var(--vscode); }
     .card[data-src="visualstudio"] { border-left-color: var(--vs); }
-    .card[data-src="jetbrains"]    { border-left-color: var(--jetbrains); }
-    .card[data-src="xcode"]        { border-left-color: var(--xcode); }
-    .card[data-src="neovim"]       { border-left-color: var(--neovim); }
-    .card[data-src="eclipse"]      { border-left-color: var(--eclipse); }
-    .card-top { display: flex; align-items: center; gap: .35rem; margin-bottom: .3rem; flex-wrap: wrap; }
-    .badge {
-      font-size: .6rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
-      padding: .1rem .4rem; border-radius: 100px; color: #fff; white-space: nowrap;
-    }
-    .badge.github       { background: var(--github); }
-    .badge.vscode       { background: var(--vscode); }
+    .card[data-src="jetbrains"] { border-left-color: var(--jetbrains); }
+    .card[data-src="xcode"] { border-left-color: var(--xcode); }
+    .card[data-src="neovim"] { border-left-color: var(--neovim); }
+    .card[data-src="eclipse"] { border-left-color: var(--eclipse); }
+
+    .card-top { display: flex; align-items: center; gap: .35rem; margin-bottom: .35rem; flex-wrap: wrap; }
+    .badge { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: .15rem .5rem; border-radius: 100px; color: #fff; white-space: nowrap; }
+    .badge.github { background: var(--github); }
+    .badge.vscode { background: var(--vscode); }
     .badge.visualstudio { background: var(--vs); }
-    .badge.jetbrains    { background: var(--jetbrains); }
-    .badge.xcode        { background: var(--xcode); }
-    .badge.neovim       { background: var(--neovim); }
-    .badge.eclipse      { background: var(--eclipse); }
-    .badge.copilot      { background: var(--copilot); }
-    .score-badge {
-      font-size: .6rem; font-weight: 700; padding: .1rem .4rem;
-      border-radius: 100px; margin-left: auto; white-space: nowrap;
-    }
+    .badge.jetbrains { background: var(--jetbrains); }
+    .badge.xcode { background: var(--xcode); }
+    .badge.neovim { background: var(--neovim); }
+    .badge.eclipse { background: var(--eclipse); }
+    .badge.copilot { background: var(--copilot); }
+    .score-badge { font-size: .6rem; font-weight: 700; padding: .15rem .5rem; border-radius: 100px; margin-left: auto; white-space: nowrap; }
     .score-badge.critical { background: var(--sev-crit); color: #fff; }
-    .score-badge.high     { background: var(--sev-high); color: #fff; }
-    .score-badge.medium   { background: var(--sev-med); color: #1d1d1f; }
-    .score-badge.low      { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
-    .card-title { font-size: .9rem; font-weight: 600; line-height: 1.35; margin-bottom: .2rem; }
-    .card-title a { color: var(--text); text-decoration: none; }
-    .card-title a:hover { text-decoration: underline; }
-    .card-desc {
-      font-size: .78rem; color: var(--text-2); line-height: 1.5;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .card-tags { display: flex; gap: .25rem; flex-wrap: wrap; margin-top: .35rem; }
-    .tag { font-size: .62rem; padding: .05rem .35rem; border-radius: 4px; background: var(--bg); color: var(--text-2); }
+    .score-badge.high { background: var(--sev-high); color: #fff; }
+    .score-badge.medium { background: var(--sev-med); color: #111; }
+    .score-badge.low { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
 
-    /* ── States ──────────────────────────────────── */
+    .card-title { font-size: .88rem; font-weight: 600; line-height: 1.4; margin-bottom: .15rem; }
+    .card-title a { color: var(--text); text-decoration: none; transition: color .15s; }
+    .card-title a:hover { color: var(--accent); }
+    .card-desc { font-size: .78rem; color: var(--text-2); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-meta { display: flex; align-items: center; gap: .5rem; margin-top: .4rem; flex-wrap: wrap; }
+    .card-tags { display: flex; gap: .25rem; flex-wrap: wrap; }
+    .tag { font-size: .62rem; padding: .1rem .4rem; border-radius: 5px; background: var(--surface-2); color: var(--text-2); font-weight: 500; border: 1px solid var(--border-2); }
+    .time-ago { font-size: .65rem; color: var(--text-3); margin-left: auto; font-weight: 500; }
+
     .loading, .empty { text-align: center; padding: 3rem 1rem; color: var(--text-2); font-size: .85rem; }
-    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--vscode); border-radius: 50%; animation: spin .7s linear infinite; margin-bottom: .4rem; }
+    .spinner { display: inline-block; width: 22px; height: 22px; border: 2.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin-bottom: .5rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .status { text-align: center; font-size: .68rem; color: var(--text-2); padding: .5rem; }
+    .status-bar { text-align: center; font-size: .68rem; color: var(--text-3); padding: .5rem; font-weight: 500; }
 
-    /* ── Legend ──────────────────────────────────── */
-    .legend { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; font-size: .65rem; color: var(--text-2); padding: .25rem 0 .5rem; }
-    .legend span { display: flex; align-items: center; gap: .2rem; }
-    .legend .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+    .footer { text-align: center; padding: 1.5rem 1rem; font-size: .68rem; color: var(--text-3); border-top: 1px solid var(--border-2); margin-top: 1rem; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
 
     @media (max-width: 640px) {
-      header { padding: 1.75rem 1rem .4rem; }
-      .controls { padding: .6rem 1rem .4rem; }
-      .entries { padding: .4rem 1rem 2rem; }
-      .parity-wrap { padding: 0 1rem; }
-      .parity-table { font-size: .65rem; }
-      .parity-table th, .parity-table td { padding: .25rem .3rem; }
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .container { padding: 0 .75rem; }
+      .parity-card { padding: 1rem; }
+      .parity-table { font-size: .62rem; }
+      .parity-table td, .parity-table th { padding: .3rem .2rem; }
+      .parity-table td:first-child { min-width: 100px; font-size: .6rem; }
+      .card { padding: .85rem .9rem; }
     }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .card { animation: fadeUp .35s var(--anim) both; }
+    .card:nth-child(2) { animation-delay: .03s; }
+    .card:nth-child(3) { animation-delay: .06s; }
+    .card:nth-child(4) { animation-delay: .09s; }
+    .card:nth-child(5) { animation-delay: .12s; }
   </style>
 </head>
 <body>
-  <header>
+  <div class="hero">
     <h1>Changelog Feed</h1>
-    <p>GitHub platform &amp; IDE changelogs &middot; scored by importance</p>
-  </header>
-
-  <!-- Parity matrix (always visible in every view) -->
-  <div class="parity-wrap">
-    <button class="parity-toggle open" id="parityToggle" aria-expanded="true">
-      <span class="arrow">&#9654;</span> Copilot Feature Parity
-    </button>
-    <div class="parity-box open" id="parityBox">
-      <table class="parity-table" id="parityTable"><tbody><tr><td>Loading…</td></tr></tbody></table>
+    <p>GitHub Copilot &amp; IDE changelog tracker &middot; scored by importance</p>
+    <div class="built-tag" id="builtTag"></div>
+  </div>
+  <div class="container parity-section">
+    <div class="parity-card">
+      <div class="parity-header open" id="parityToggle">
+        <h2><span class="icon">&#9889;</span> Copilot Feature Parity</h2>
+        <svg class="parity-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="parity-body open" id="parityBody">
+        <div id="parityContent"><p style="color:var(--text-3);font-size:.8rem;padding:.75rem 0">Loading matrix&hellip;</p></div>
+        <div class="parity-legend">
+          <span><span class="p-yes">&#10003;</span> Supported</span>
+          <span><span class="p-partial">&#9681;</span> Partial / Preview</span>
+          <span><span class="p-no">&#10005;</span> Not available</span>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="controls">
-    <div class="legend">
-      <span><span class="swatch" style="background:var(--sev-crit)"></span> Critical 75+</span>
-      <span><span class="swatch" style="background:var(--sev-high)"></span> High 50–74</span>
-      <span><span class="swatch" style="background:var(--sev-med)"></span> Medium 25–49</span>
-      <span><span class="swatch" style="background:var(--sev-low)"></span> Low &lt;25</span>
-    </div>
-    <div class="search">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.2" y1="10.2" x2="14.5" y2="14.5"/></svg>
-      <input type="search" id="search" placeholder="Search changelogs…" autocomplete="off">
-      <span class="hint">/</span>
-    </div>
-    <div class="filters" id="filters">
-      <button class="f-btn on" data-f="all">All</button>
-      <button class="f-btn" data-f="github"><span class="dot" style="background:var(--github)"></span>GitHub</button>
-      <button class="f-btn" data-f="copilot"><span class="dot" style="background:var(--copilot)"></span>Copilot</button>
-      <button class="f-btn" data-f="vscode"><span class="dot" style="background:var(--vscode)"></span>VS Code</button>
-      <button class="f-btn" data-f="visualstudio"><span class="dot" style="background:var(--vs)"></span>Visual Studio</button>
-      <button class="f-btn" data-f="jetbrains"><span class="dot" style="background:var(--jetbrains)"></span>JetBrains</button>
-      <button class="f-btn" data-f="xcode"><span class="dot" style="background:var(--xcode)"></span>Xcode</button>
-      <button class="f-btn" data-f="neovim"><span class="dot" style="background:var(--neovim)"></span>Neovim</button>
-      <button class="f-btn" data-f="eclipse"><span class="dot" style="background:var(--eclipse)"></span>Eclipse</button>
+  <div class="controls-bar">
+    <div class="container controls-inner">
+      <div class="severity-bar">
+        <span><span class="pip" style="background:var(--sev-crit)"></span> Critical 75+</span>
+        <span><span class="pip" style="background:var(--sev-high)"></span> High 50&ndash;74</span>
+        <span><span class="pip" style="background:var(--sev-med)"></span> Medium 25&ndash;49</span>
+        <span><span class="pip" style="background:var(--sev-low)"></span> Low &lt;25</span>
+      </div>
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.2" y1="10.2" x2="14.5" y2="14.5"/></svg>
+        <input type="search" id="search" placeholder="Search changelogs..." autocomplete="off">
+        <span class="kbd-hint">/</span>
+      </div>
+      <div class="filters" id="filters">
+        <button class="f-btn on" data-f="all">All</button>
+        <button class="f-btn" data-f="github"><span class="dot" style="background:var(--github)"></span>GitHub</button>
+        <button class="f-btn" data-f="copilot"><span class="dot" style="background:var(--copilot)"></span>Copilot</button>
+        <button class="f-btn" data-f="vscode"><span class="dot" style="background:var(--vscode)"></span>VS Code</button>
+        <button class="f-btn" data-f="visualstudio"><span class="dot" style="background:var(--vs)"></span>Visual Studio</button>
+        <button class="f-btn" data-f="jetbrains"><span class="dot" style="background:var(--jetbrains)"></span>JetBrains</button>
+        <button class="f-btn" data-f="xcode"><span class="dot" style="background:var(--xcode)"></span>Xcode</button>
+        <button class="f-btn" data-f="neovim"><span class="dot" style="background:var(--neovim)"></span>Neovim</button>
+        <button class="f-btn" data-f="eclipse"><span class="dot" style="background:var(--eclipse)"></span>Eclipse</button>
+      </div>
     </div>
   </div>
-
-  <div class="entries" id="entries">
-    <div class="loading"><div class="spinner"></div><br>Loading changelogs…</div>
+  <div class="container entries" id="entries">
+    <div class="loading"><div class="spinner"></div><br>Loading changelogs&hellip;</div>
   </div>
-  <div class="status" id="status"></div>
-
+  <div class="status-bar" id="status"></div>
+  <div class="footer">Changelog Feed &mdash; auto-built from public RSS &amp; release feeds &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source</a></div>
 <script>
-/* ── Helpers ────────────────────────────────────── */
-const SRC = {
-  github:'GitHub', vscode:'VS Code', visualstudio:'Visual Studio',
-  jetbrains:'JetBrains', xcode:'Xcode', neovim:'Neovim', eclipse:'Eclipse'
+var SRC = {
+  github: 'GitHub', vscode: 'VS Code', visualstudio: 'Visual Studio',
+  jetbrains: 'JetBrains', xcode: 'Xcode', neovim: 'Neovim', eclipse: 'Eclipse'
 };
 
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function esc(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
 
 function safeHref(url) {
-  try { const u = new URL(url); return ['http:','https:'].includes(u.protocol) ? u.href : '#'; }
-  catch { return '#'; }
+  try {
+    var u = new URL(url);
+    return ['http:', 'https:'].includes(u.protocol) ? u.href : '#';
+  } catch (e) { return '#'; }
 }
 
 function ago(iso) {
-  const s = Math.floor((Date.now() - new Date(iso)) / 1000);
+  var s = Math.floor((Date.now() - new Date(iso)) / 1000);
   if (s < 60) return 'just now';
-  const u = [[31536000,'y'],[2592000,'mo'],[86400,'d'],[3600,'h'],[60,'m']];
-  for (const [n,l] of u) { const c = Math.floor(s/n); if (c >= 1) return c + l + ' ago'; }
+  var u = [[31536000,'y'],[2592000,'mo'],[86400,'d'],[3600,'h'],[60,'m']];
+  for (var i = 0; i < u.length; i++) {
+    var c = Math.floor(s / u[i][0]);
+    if (c >= 1) return c + u[i][1] + ' ago';
+  }
   return 'just now';
 }
 
-/* ── State ──────────────────────────────────────── */
-let all = [], parity = null, filter = 'all', query = '';
+var all = [], parity = null, filter = 'all', query = '';
 
-/* ── Parity matrix toggle ───────────────────────── */
-const parityToggle = document.getElementById('parityToggle');
-const parityBox = document.getElementById('parityBox');
-parityToggle.addEventListener('click', () => {
-  const open = parityBox.classList.toggle('open');
+var parityToggle = document.getElementById('parityToggle');
+var parityBody = document.getElementById('parityBody');
+parityToggle.addEventListener('click', function () {
+  var open = parityBody.classList.toggle('open');
   parityToggle.classList.toggle('open', open);
   parityToggle.setAttribute('aria-expanded', open);
 });
 
-/* ── Render parity matrix ───────────────────────── */
-function renderParity() {
-  if (!parity) return;
-  const t = document.getElementById('parityTable');
-  const ides = parity.ides;
-  let h = '<thead><tr><th>Feature</th>' + ides.map(i => '<th>' + esc(i) + '</th>').join('') + '</tr></thead><tbody>';
-  for (const f of parity.features) {
+function buildTable(ides, features) {
+  var h = '<table class="parity-table"><thead><tr><th style="text-align:left">Feature</th>';
+  for (var i = 0; i < ides.length; i++) h += '<th>' + esc(ides[i]) + '</th>';
+  h += '</tr></thead><tbody>';
+  for (var i = 0; i < features.length; i++) {
+    var f = features[i];
     h += '<tr><td>' + esc(f.name) + '</td>';
-    for (const ide of ides) {
-      const v = f.support[ide];
+    for (var j = 0; j < ides.length; j++) {
+      var v = f.support[ides[j]];
       if (v === true) h += '<td class="p-yes">&#10003;</td>';
       else if (v === 'partial') h += '<td class="p-partial">&#9681;</td>';
       else h += '<td class="p-no">&#10005;</td>';
     }
     h += '</tr>';
   }
-  h += '</tbody>';
-  t.innerHTML = h;
+  h += '</tbody></table>';
+  return h;
 }
 
-/* ── Render entries ─────────────────────────────── */
+function renderParity() {
+  if (!parity) return;
+  var box = document.getElementById('parityContent');
+  var ides = parity.ides;
+  var cats = parity.categories || [];
+  if (!cats.length && parity.features) {
+    box.innerHTML = buildTable(ides, parity.features);
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < cats.length; i++) {
+    html += '<div class="parity-cat">';
+    html += '<div class="parity-cat-label">' + esc(cats[i].category) + '</div>';
+    html += buildTable(ides, cats[i].features);
+    html += '</div>';
+  }
+  box.innerHTML = html;
+}
+
 function render() {
-  const q = query.toLowerCase();
-  const list = all.filter(e => {
+  var q = query.toLowerCase();
+  var list = all.filter(function (e) {
     if (filter === 'copilot' && !e.is_copilot) return false;
     if (filter !== 'all' && filter !== 'copilot' && e.source !== filter) return false;
-    if (q && !e.title.toLowerCase().includes(q) && !e.description.toLowerCase().includes(q)
-        && !e.tags.some(t => t.includes(q))) return false;
+    if (q && e.title.toLowerCase().indexOf(q) === -1
+        && e.description.toLowerCase().indexOf(q) === -1
+        && !e.tags.some(function (t) { return t.indexOf(q) !== -1; }))
+      return false;
     return true;
   });
-  const box = document.getElementById('entries');
-  if (!list.length) { box.innerHTML = '<div class="empty">No entries match your filter</div>'; updateStatus(list.length); return; }
-
-  box.innerHTML = list.map(e => `
-    <div class="card" data-src="${esc(e.source)}">
-      <div class="card-top">
-        <span class="badge ${esc(e.source)}">${esc(SRC[e.source] || e.source)}</span>
-        ${e.is_copilot ? '<span class="badge copilot">Copilot</span>' : ''}
-        <span class="score-badge ${esc(e.severity)}">${e.score}</span>
-      </div>
-      <div class="card-title"><a href="${safeHref(e.link)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>
-      ${e.description ? `<div class="card-desc">${esc(e.description)}</div>` : ''}
-      <div style="display:flex;align-items:center;gap:.5rem;margin-top:.3rem;flex-wrap:wrap">
-        ${e.tags.length ? `<div class="card-tags">${e.tags.slice(0,6).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
-        <span style="font-size:.65rem;color:var(--text-3);margin-left:auto">${ago(e.published)}</span>
-      </div>
-    </div>
-  `).join('');
+  var box = document.getElementById('entries');
+  if (!list.length) {
+    box.innerHTML = '<div class="empty">No entries match your filter</div>';
+    updateStatus(list.length);
+    return;
+  }
+  box.innerHTML = list.map(function (e) {
+    return '<div class="card" data-src="' + esc(e.source) + '">' +
+      '<div class="card-top">' +
+        '<span class="badge ' + esc(e.source) + '">' + esc(SRC[e.source] || e.source) + '</span>' +
+        (e.is_copilot ? '<span class="badge copilot">Copilot</span>' : '') +
+        '<span class="score-badge ' + esc(e.severity) + '">' + e.score + '</span>' +
+      '</div>' +
+      '<div class="card-title"><a href="' + safeHref(e.link) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>' +
+      (e.description ? '<div class="card-desc">' + esc(e.description) + '</div>' : '') +
+      '<div class="card-meta">' +
+        (e.tags.length ? '<div class="card-tags">' + e.tags.slice(0, 6).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
+        '<span class="time-ago">' + ago(e.published) + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
   updateStatus(list.length);
 }
 
 function updateStatus(shown) {
-  const st = document.getElementById('status');
-  const total = all.length;
-  const ts = window._builtAt ? new Date(window._builtAt).toLocaleString() : '';
+  var st = document.getElementById('status');
+  var total = all.length;
+  var ts = window._builtAt ? new Date(window._builtAt).toLocaleString() : '';
   st.textContent = (shown < total ? shown + ' of ' + total : '' + total) + ' entries' + (ts ? ' \u00b7 Built ' + ts : '');
 }
 
-/* ── Filters ────────────────────────────────────── */
-document.getElementById('filters').addEventListener('click', e => {
-  const btn = e.target.closest('.f-btn');
+document.getElementById('filters').addEventListener('click', function (e) {
+  var btn = e.target.closest('.f-btn');
   if (!btn) return;
-  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.f-btn').forEach(function (b) { b.classList.remove('on'); });
   btn.classList.add('on');
   filter = btn.dataset.f;
   render();
 });
 
-/* ── Search ─────────────────────────────────────── */
-const searchEl = document.getElementById('search');
-searchEl.addEventListener('input', () => { query = searchEl.value; render(); });
-document.addEventListener('keydown', e => {
+var searchEl = document.getElementById('search');
+searchEl.addEventListener('input', function () { query = searchEl.value; render(); });
+document.addEventListener('keydown', function (e) {
   if (e.key === '/' && document.activeElement !== searchEl) { e.preventDefault(); searchEl.focus(); }
   if (e.key === 'Escape' && document.activeElement === searchEl) { searchEl.value = ''; query = ''; render(); searchEl.blur(); }
 });
 
-/* ── Fetch ──────────────────────────────────────── */
-async function load() {
+(async function () {
   try {
-    const res = await fetch('data.json');
+    var res = await fetch('data.json');
     if (!res.ok) throw new Error(res.status);
-    const data = await res.json();
+    var data = await res.json();
     all = data.entries || [];
     parity = data.parity || null;
     window._builtAt = data.built_at;
+    var tag = document.getElementById('builtTag');
+    if (data.built_at) tag.textContent = 'Last built ' + new Date(data.built_at).toLocaleString();
     renderParity();
     render();
   } catch (err) {
     document.getElementById('entries').innerHTML =
       '<div class="empty">Failed to load data.json &mdash; run <code>python -m src.build</code> first</div>';
   }
-}
-
-load();
+})();
 </script>
 </body>
 </html>
