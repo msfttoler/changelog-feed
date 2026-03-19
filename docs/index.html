@@ -140,6 +140,43 @@
     .footer a { color: var(--accent); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
 
+    /* AI Highlights */
+    .highlights { margin-top: .75rem; }
+    .highlights-header { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: .45rem; margin-bottom: .6rem; }
+    .highlights-header .icon { font-size: 1rem; }
+    .highlights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .55rem; }
+    .hi-card { background: var(--surface); border-radius: var(--radius); padding: .85rem 1rem; box-shadow: var(--shadow); border: 1px solid var(--border-2); position: relative; overflow: hidden; transition: box-shadow .25s var(--anim), transform .2s var(--anim); }
+    .hi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .hi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .hi-score { position: absolute; top: .6rem; right: .75rem; font-size: .6rem; font-weight: 700; padding: .1rem .45rem; border-radius: 100px; }
+    .hi-source { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-3); margin-bottom: .15rem; }
+    .hi-title { font-size: .82rem; font-weight: 600; line-height: 1.35; margin-bottom: .3rem; }
+    .hi-title a { color: var(--text); text-decoration: none; transition: color .15s; }
+    .hi-title a:hover { color: var(--accent); }
+    .hi-summary { font-size: .72rem; color: var(--accent); font-weight: 500; line-height: 1.45; font-style: italic; }
+    .hi-summary::before { content: '\2728 '; }
+
+    /* Card AI summary */
+    .card-ai { font-size: .72rem; color: var(--accent); font-weight: 500; line-height: 1.4; margin-top: .3rem; font-style: italic; }
+    .card-ai::before { content: '\2728 '; }
+
+    /* Read more link */
+    .card-link { display: inline-flex; align-items: center; gap: .2rem; font-size: .7rem; font-weight: 600; color: var(--accent); text-decoration: none; margin-top: .25rem; transition: gap .2s var(--anim); }
+    .card-link:hover { gap: .4rem; }
+    .card-link::after { content: '\2192'; }
+
+    /* Attribution section */
+    .attribution { background: var(--surface); border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1rem; border: 1px solid var(--border-2); box-shadow: var(--shadow); }
+    .attrib-header { font-size: .78rem; font-weight: 700; margin-bottom: .5rem; color: var(--text); display: flex; align-items: center; gap: .3rem; }
+    .attrib-header .icon { font-size: .85rem; }
+    .attrib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .4rem; }
+    .attrib-item { display: flex; align-items: center; gap: .4rem; padding: .35rem .5rem; border-radius: var(--radius-sm); background: var(--surface-2); font-size: .7rem; transition: background .15s; }
+    .attrib-item:hover { background: var(--accent-glow); }
+    .attrib-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .attrib-name { font-weight: 600; color: var(--text); }
+    .attrib-link { color: var(--accent); text-decoration: none; margin-left: auto; font-weight: 500; flex-shrink: 0; }
+    .attrib-link:hover { text-decoration: underline; }
+
     @media (max-width: 640px) {
       .hero { padding: 2rem 1rem 1.5rem; }
       .hero h1 { font-size: 1.5rem; }
@@ -182,6 +219,10 @@
   </div>
   <div class="controls-bar">
     <div class="container controls-inner">
+      <div class="highlights" id="highlightsSection" style="display:none">
+        <div class="highlights-header"><span class="icon">&#9889;</span> AI Highlights</div>
+        <div class="highlights-grid" id="highlightsGrid"></div>
+      </div>
       <div class="severity-bar">
         <span><span class="pip" style="background:var(--sev-crit)"></span> Critical 75+</span>
         <span><span class="pip" style="background:var(--sev-high)"></span> High 50&ndash;74</span>
@@ -210,7 +251,13 @@
     <div class="loading"><div class="spinner"></div><br>Loading changelogs&hellip;</div>
   </div>
   <div class="status-bar" id="status"></div>
-  <div class="footer">Changelog Feed &mdash; auto-built from public RSS &amp; release feeds &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source</a></div>
+  <div class="container">
+    <div class="attribution" id="attribution" style="display:none">
+      <div class="attrib-header"><span class="icon">&#128279;</span> Sources &amp; Attribution</div>
+      <div class="attrib-grid" id="attribGrid"></div>
+    </div>
+  </div>
+  <div class="footer">Changelog Feed &mdash; auto-aggregated from public RSS &amp; release feeds &middot; All content belongs to its respective owners &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source Code</a></div>
 <script>
 var SRC = {
   github: 'GitHub', vscode: 'VS Code', visualstudio: 'Visual Studio',
@@ -241,7 +288,12 @@ function ago(iso) {
   return 'just now';
 }
 
-var all = [], parity = null, filter = 'all', query = '';
+var all = [], parity = null, sources = null, filter = 'all', query = '';
+
+var SRC_COLORS = {
+  github: 'var(--github)', vscode: 'var(--vscode)', visualstudio: 'var(--vs)',
+  jetbrains: 'var(--jetbrains)', xcode: 'var(--xcode)', neovim: 'var(--neovim)', eclipse: 'var(--eclipse)'
+};
 
 var parityToggle = document.getElementById('parityToggle');
 var parityBody = document.getElementById('parityBody');
@@ -289,6 +341,39 @@ function renderParity() {
   box.innerHTML = html;
 }
 
+function renderHighlights() {
+  var hi = all.filter(function (e) { return e.highlight; }).slice(0, 8);
+  var section = document.getElementById('highlightsSection');
+  var grid = document.getElementById('highlightsGrid');
+  if (!hi.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  grid.innerHTML = hi.map(function (e) {
+    return '<div class="hi-card">' +
+      '<span class="hi-score score-badge ' + esc(e.severity) + '">' + e.score + '</span>' +
+      '<div class="hi-source">' + esc(SRC[e.source] || e.source) + '</div>' +
+      '<div class="hi-title"><a href="' + safeHref(e.link) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>' +
+      (e.ai_summary ? '<div class="hi-summary">' + esc(e.ai_summary) + '</div>' : '') +
+    '</div>';
+  }).join('');
+}
+
+function renderAttribution() {
+  if (!sources) return;
+  var section = document.getElementById('attribution');
+  var grid = document.getElementById('attribGrid');
+  section.style.display = '';
+  var keys = Object.keys(sources);
+  grid.innerHTML = keys.map(function (k) {
+    var s = sources[k];
+    var color = SRC_COLORS[k] || 'var(--text-3)';
+    return '<div class="attrib-item">' +
+      '<span class="attrib-dot" style="background:' + color + '"></span>' +
+      '<span class="attrib-name">' + esc(s.name) + '</span>' +
+      '<a class="attrib-link" href="' + safeHref(s.url) + '" target="_blank" rel="noopener">Visit &rarr;</a>' +
+    '</div>';
+  }).join('');
+}
+
 function render() {
   var q = query.toLowerCase();
   var list = all.filter(function (e) {
@@ -315,8 +400,10 @@ function render() {
       '</div>' +
       '<div class="card-title"><a href="' + safeHref(e.link) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>' +
       (e.description ? '<div class="card-desc">' + esc(e.description) + '</div>' : '') +
+      (e.ai_summary ? '<div class="card-ai">' + esc(e.ai_summary) + '</div>' : '') +
       '<div class="card-meta">' +
         (e.tags.length ? '<div class="card-tags">' + e.tags.slice(0, 6).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
+        '<a class="card-link" href="' + safeHref(e.link) + '" target="_blank" rel="noopener">Read changelog</a>' +
         '<span class="time-ago">' + ago(e.published) + '</span>' +
       '</div>' +
     '</div>';
@@ -354,10 +441,13 @@ document.addEventListener('keydown', function (e) {
     var data = await res.json();
     all = data.entries || [];
     parity = data.parity || null;
+    sources = data.sources || null;
     window._builtAt = data.built_at;
     var tag = document.getElementById('builtTag');
     if (data.built_at) tag.textContent = 'Last built ' + new Date(data.built_at).toLocaleString();
     renderParity();
+    renderHighlights();
+    renderAttribution();
     render();
   } catch (err) {
     document.getElementById('entries').innerHTML =

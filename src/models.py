@@ -20,3 +20,5 @@ class ChangeEntry(BaseModel):
     is_copilot: bool = False
     score: int = 0
     severity: str = "low"
+    ai_summary: str = ""
+    highlight: bool = False

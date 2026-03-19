@@ -25,6 +25,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build data.json
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python -m src.build
 
       - name: Commit updated data
