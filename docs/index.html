@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Changelog Feed</title>
+  <title>Developer Productivity Changelog Feed</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -140,21 +140,10 @@
     .footer a { color: var(--accent); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
 
-    /* AI Highlights */
-    .highlights { margin-top: .75rem; }
-    .highlights-header { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: .45rem; margin-bottom: .6rem; }
-    .highlights-header .icon { font-size: 1rem; }
-    .highlights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .55rem; }
-    .hi-card { background: var(--surface); border-radius: var(--radius); padding: .85rem 1rem; box-shadow: var(--shadow); border: 1px solid var(--border-2); position: relative; overflow: hidden; transition: box-shadow .25s var(--anim), transform .2s var(--anim); }
-    .hi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-    .hi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .hi-score { position: absolute; top: .6rem; right: .75rem; font-size: .6rem; font-weight: 700; padding: .1rem .45rem; border-radius: 100px; }
-    .hi-source { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-3); margin-bottom: .15rem; }
-    .hi-title { font-size: .82rem; font-weight: 600; line-height: 1.35; margin-bottom: .3rem; }
-    .hi-title a { color: var(--text); text-decoration: none; transition: color .15s; }
-    .hi-title a:hover { color: var(--accent); }
-    .hi-summary { font-size: .72rem; color: var(--accent); font-weight: 500; line-height: 1.45; font-style: italic; }
-    .hi-summary::before { content: '\2728 '; }
+    /* Highlighted card (inline) */
+    .card.highlighted { border-left-color: var(--accent) !important; box-shadow: var(--shadow-md), 0 0 0 1px var(--accent-glow); background: linear-gradient(135deg, var(--surface) 92%, var(--accent-glow) 100%); }
+    .card.highlighted::after { content: '\2728'; position: absolute; top: .65rem; right: .65rem; font-size: .75rem; }
+    .card { position: relative; }
 
     /* Card AI summary */
     .card-ai { font-size: .72rem; color: var(--accent); font-weight: 500; line-height: 1.4; margin-top: .3rem; font-style: italic; }
@@ -197,8 +186,8 @@
 </head>
 <body>
   <div class="hero">
-    <h1>Changelog Feed</h1>
-    <p>GitHub Copilot &amp; IDE changelog tracker &middot; scored by importance</p>
+    <h1>Developer Productivity Changelog Feed</h1>
+    <p>IDE &amp; Copilot changelog tracker &middot; scored by importance</p>
     <div class="built-tag" id="builtTag"></div>
   </div>
   <div class="container parity-section">
@@ -219,10 +208,6 @@
   </div>
   <div class="controls-bar">
     <div class="container controls-inner">
-      <div class="highlights" id="highlightsSection" style="display:none">
-        <div class="highlights-header"><span class="icon">&#9889;</span> AI Highlights</div>
-        <div class="highlights-grid" id="highlightsGrid"></div>
-      </div>
       <div class="severity-bar">
         <span><span class="pip" style="background:var(--sev-crit)"></span> Critical 75+</span>
         <span><span class="pip" style="background:var(--sev-high)"></span> High 50&ndash;74</span>
@@ -257,7 +242,7 @@
       <div class="attrib-grid" id="attribGrid"></div>
     </div>
   </div>
-  <div class="footer">Changelog Feed &mdash; auto-aggregated from public RSS &amp; release feeds &middot; All content belongs to its respective owners &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source Code</a></div>
+  <div class="footer">Developer Productivity Changelog Feed &mdash; auto-aggregated from public RSS &amp; release feeds &middot; All content belongs to its respective owners &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source Code</a></div>
 <script>
 var SRC = {
   github: 'GitHub', vscode: 'VS Code', visualstudio: 'Visual Studio',
@@ -341,22 +326,6 @@ function renderParity() {
   box.innerHTML = html;
 }
 
-function renderHighlights() {
-  var hi = all.filter(function (e) { return e.highlight; }).slice(0, 8);
-  var section = document.getElementById('highlightsSection');
-  var grid = document.getElementById('highlightsGrid');
-  if (!hi.length) { section.style.display = 'none'; return; }
-  section.style.display = '';
-  grid.innerHTML = hi.map(function (e) {
-    return '<div class="hi-card">' +
-      '<span class="hi-score score-badge ' + esc(e.severity) + '">' + e.score + '</span>' +
-      '<div class="hi-source">' + esc(SRC[e.source] || e.source) + '</div>' +
-      '<div class="hi-title"><a href="' + safeHref(e.link) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>' +
-      (e.ai_summary ? '<div class="hi-summary">' + esc(e.ai_summary) + '</div>' : '') +
-    '</div>';
-  }).join('');
-}
-
 function renderAttribution() {
   if (!sources) return;
   var section = document.getElementById('attribution');
@@ -392,7 +361,7 @@ function render() {
     return;
   }
   box.innerHTML = list.map(function (e) {
-    return '<div class="card" data-src="' + esc(e.source) + '">' +
+    return '<div class="card' + (e.highlight ? ' highlighted' : '') + '" data-src="' + esc(e.source) + '">' +
       '<div class="card-top">' +
         '<span class="badge ' + esc(e.source) + '">' + esc(SRC[e.source] || e.source) + '</span>' +
         (e.is_copilot ? '<span class="badge copilot">Copilot</span>' : '') +
@@ -446,7 +415,6 @@ document.addEventListener('keydown', function (e) {
     var tag = document.getElementById('builtTag');
     if (data.built_at) tag.textContent = 'Last built ' + new Date(data.built_at).toLocaleString();
     renderParity();
-    renderHighlights();
     renderAttribution();
     render();
   } catch (err) {
