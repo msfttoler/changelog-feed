@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from .feeds import fetch_all
 from .parity import get_parity_matrix
+from .retention import filter_recent
 from .scorer import score_entry
 from .summarizer import add_summaries
 
@@ -26,6 +27,9 @@ def build(out_dir: Path | None = None) -> None:
     logger.info("Fetching feeds…")
     entries = fetch_all()
     logger.info("Fetched %d entries", len(entries))
+
+    entries = filter_recent(entries)
+    logger.info("Retained %d entries within 3-month window", len(entries))
 
     scored = [score_entry(e) for e in entries]
     scored.sort(key=lambda e: (-e.score, -e.published.timestamp()))

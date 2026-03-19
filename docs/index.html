@@ -53,7 +53,7 @@
     .parity-card { background: var(--surface); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-2); }
     .parity-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
     .parity-header h2 { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: .45rem; }
-    .parity-header h2 .icon { font-size: 1.1rem; }
+    .parity-header h2 .copilot-logo { width: 22px; height: 22px; }
     .parity-chevron { width: 20px; height: 20px; transition: transform .25s var(--anim); color: var(--text-2); flex-shrink: 0; }
     .parity-header.open .parity-chevron { transform: rotate(180deg); }
     .parity-body { max-height: 0; overflow: hidden; transition: max-height .4s var(--anim); }
@@ -64,6 +64,7 @@
     .parity-cat-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: .35rem; padding-left: .15rem; }
     .parity-table { width: 100%; border-collapse: collapse; font-size: .73rem; background: var(--surface-2); border-radius: var(--radius-sm); overflow: hidden; }
     .parity-table thead th { background: var(--surface-3); color: var(--text-2); font-weight: 600; padding: .4rem .35rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .03em; }
+    .parity-table thead th .ide-logo { width: 18px; height: 18px; display: block; margin: 0 auto .2rem; border-radius: 4px; object-fit: contain; }
     .parity-table td { padding: .4rem .35rem; text-align: center; border-bottom: 1px solid var(--border-2); }
     .parity-table tr:last-child td { border-bottom: none; }
     .parity-table td:first-child { text-align: left; font-weight: 500; min-width: 140px; color: var(--text); padding-left: .6rem; }
@@ -193,7 +194,7 @@
   <div class="container parity-section">
     <div class="parity-card">
       <div class="parity-header open" id="parityToggle">
-        <h2><span class="icon">&#9889;</span> Copilot Feature Parity</h2>
+        <h2><svg class="copilot-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2c1.93 0 3.68.78 4.95 2.05l-1.41 1.41A5.006 5.006 0 0012 6c-2.76 0-5 2.24-5 5v1c0 .55-.45 1-1 1s-1-.45-1-1v-1c0-3.87 3.13-7 7-7zm0 4c1.66 0 3 1.34 3 3v1h-2v-1c0-.55-.45-1-1-1s-1 .45-1 1v1H9v-1c0-1.66 1.34-3 3-3zm-4 6h8c.55 0 1 .45 1 1v1c0 2.21-1.79 4-4 4h-2c-2.21 0-4-1.79-4-4v-1c0-.55.45-1 1-1z" fill="currentColor"/></svg> Copilot Feature Parity</h2>
         <svg class="parity-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
       </div>
       <div class="parity-body open" id="parityBody">
@@ -288,9 +289,22 @@ parityToggle.addEventListener('click', function () {
   parityToggle.setAttribute('aria-expanded', open);
 });
 
+var IDE_LOGOS = {
+  'VS Code': 'https://code.visualstudio.com/favicon.ico',
+  'VS Code Insiders': 'https://insiders.vscode.dev/static/stable/favicon.ico',
+  'Visual Studio': 'https://visualstudio.microsoft.com/wp-content/uploads/2021/10/Product-Icon.svg',
+  'JetBrains IDEs': 'https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg',
+  'Neovim': 'https://neovim.io/favicon.ico',
+  'Eclipse': 'https://eclipseide.org/favicon.ico',
+  'Xcode': 'https://developer.apple.com/assets/elements/icons/xcode/xcode-96x96_2x.png'
+};
+
 function buildTable(ides, features) {
   var h = '<table class="parity-table"><thead><tr><th style="text-align:left">Feature</th>';
-  for (var i = 0; i < ides.length; i++) h += '<th>' + esc(ides[i]) + '</th>';
+  for (var i = 0; i < ides.length; i++) {
+    var logo = IDE_LOGOS[ides[i]];
+    h += '<th>' + (logo ? '<img class="ide-logo" src="' + logo + '" alt="' + esc(ides[i]) + '" loading="lazy">' : '') + esc(ides[i]) + '</th>';
+  }
   h += '</tr></thead><tbody>';
   for (var i = 0; i < features.length; i++) {
     var f = features[i];
