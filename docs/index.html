@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Productivity Changelog Feed</title>
+  <link rel="alternate" type="application/atom+xml" title="Changelog Feed" href="feed.xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -169,6 +170,52 @@
     .attrib-link { color: var(--accent); text-decoration: none; margin-left: auto; font-weight: 500; flex-shrink: 0; }
     .attrib-link:hover { text-decoration: underline; }
 
+    /* Change-type badges */
+    .change-badge { font-size: .58rem; font-weight: 600; padding: .1rem .4rem; border-radius: 100px; white-space: nowrap; }
+    .change-badge.cb-security { background: rgba(239,68,68,.12); color: var(--sev-crit); }
+    .change-badge.cb-breaking { background: rgba(245,158,11,.12); color: var(--sev-high); }
+    .change-badge.cb-copilot { background: rgba(139,92,246,.12); color: var(--copilot); }
+    .change-badge.cb-new { background: rgba(34,197,94,.12); color: var(--sev-low); }
+    .change-badge.cb-perf { background: rgba(59,130,246,.12); color: #3b82f6; }
+    .change-badge.cb-fix { background: var(--surface-2); color: var(--text-2); }
+
+    /* Coverage bars in parity */
+    .coverage-bar-wrap { display: flex; align-items: center; gap: .5rem; margin-top: .5rem; flex-wrap: wrap; }
+    .coverage-item { display: flex; align-items: center; gap: .3rem; font-size: .65rem; color: var(--text-2); font-weight: 500; }
+    .coverage-item .cov-bar { width: 48px; height: 6px; border-radius: 3px; background: var(--surface-3); overflow: hidden; }
+    .coverage-item .cov-fill { height: 100%; border-radius: 3px; transition: width .4s var(--anim); }
+    .coverage-item .cov-pct { font-weight: 700; min-width: 28px; }
+
+    /* Changelog Pulse section */
+    .pulse-section { margin-top: .75rem; margin-bottom: -.25rem; }
+    .pulse-card { background: var(--surface); border-radius: var(--radius); padding: 1rem 1.25rem; box-shadow: var(--shadow); border: 1px solid var(--border-2); }
+    .pulse-header { font-size: .78rem; font-weight: 700; margin-bottom: .6rem; display: flex; align-items: center; gap: .35rem; color: var(--text); }
+    .pulse-header .pulse-icon { font-size: .85rem; }
+    .pulse-stats { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: .75rem; }
+    .pulse-stat { text-align: center; min-width: 70px; }
+    .pulse-stat .ps-val { font-size: 1.4rem; font-weight: 800; color: var(--accent); line-height: 1.2; }
+    .pulse-stat .ps-label { font-size: .6rem; color: var(--text-2); font-weight: 500; text-transform: uppercase; letter-spacing: .03em; }
+    .pulse-sparks { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .pulse-spark { flex: 1; min-width: 100px; }
+    .pulse-spark-label { font-size: .6rem; font-weight: 600; color: var(--text-2); margin-bottom: .2rem; display: flex; align-items: center; gap: .25rem; }
+    .pulse-spark-label .spark-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .pulse-spark svg { display: block; width: 100%; height: 28px; }
+    .pulse-spark polyline { fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pulse-spark .spark-area { stroke: none; opacity: .12; }
+
+    /* Freshness dot */
+    .freshness-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: .3rem; vertical-align: middle; }
+    .freshness-dot.fresh { background: var(--sev-low); box-shadow: 0 0 4px var(--sev-low); }
+    .freshness-dot.stale { background: var(--sev-high); }
+    .freshness-dot.old { background: var(--sev-crit); }
+
+    /* Keyboard active card */
+    .card.kb-active { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Kbd shortcut legend */
+    .kbd-legend { display: flex; gap: .75rem; justify-content: center; font-size: .58rem; color: var(--text-3); padding: .25rem 0 .4rem; }
+    .kbd-legend kbd { font-family: var(--font); font-size: .55rem; font-weight: 600; padding: .05rem .3rem; border: 1px solid var(--border); border-radius: 3px; background: var(--surface-2); margin: 0 .15rem; }
+
     @media (max-width: 640px) {
       .hero { padding: 2rem 1rem 1.5rem; }
       .hero h1 { font-size: 1.5rem; }
@@ -178,6 +225,9 @@
       .parity-table td, .parity-table th { padding: .3rem .2rem; }
       .parity-table td:first-child { min-width: 100px; font-size: .6rem; }
       .card { padding: .85rem .9rem; }
+      .pulse-stats { gap: .5rem; }
+      .pulse-stat .ps-val { font-size: 1.1rem; }
+      .kbd-legend { display: none; }
     }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     .card { animation: fadeUp .35s var(--anim) both; }
@@ -209,6 +259,13 @@
       </div>
     </div>
   </div>
+  <div class="container pulse-section" id="pulseSection" style="display:none">
+    <div class="pulse-card">
+      <div class="pulse-header"><span class="pulse-icon">&#128200;</span> Changelog Pulse</div>
+      <div class="pulse-stats" id="pulseStats"></div>
+      <div class="pulse-sparks" id="pulseSparks"></div>
+    </div>
+  </div>
   <div class="controls-bar">
     <div class="container controls-inner">
       <div class="severity-bar">
@@ -233,6 +290,7 @@
         <button class="f-btn" data-f="neovim"><span class="dot" style="background:var(--neovim)"></span>Neovim</button>
         <button class="f-btn" data-f="eclipse"><span class="dot" style="background:var(--eclipse)"></span>Eclipse</button>
       </div>
+      <div class="kbd-legend"><span><kbd>j</kbd><kbd>k</kbd> navigate</span> <span><kbd>o</kbd> open</span> <span><kbd>/</kbd> search</span> <span><kbd>esc</kbd> clear</span></div>
     </div>
   </div>
   <div class="container entries" id="entries">
@@ -245,7 +303,7 @@
       <div class="attrib-grid" id="attribGrid"></div>
     </div>
   </div>
-  <div class="footer">Developer Productivity Changelog Feed &mdash; auto-aggregated from public RSS &amp; release feeds &middot; All content belongs to its respective owners &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source Code</a></div>
+  <div class="footer">Developer Productivity Changelog Feed &mdash; auto-aggregated from public RSS &amp; release feeds &middot; All content belongs to its respective owners &middot; <a href="feed.xml">Subscribe (Atom)</a> &middot; <a href="https://github.com/msfttoler/changelog-feed" target="_blank" rel="noopener">Source Code</a></div>
 <script>
 var SRC = {
   github: 'GitHub', vscode: 'VS Code', visualstudio: 'Visual Studio',
@@ -277,6 +335,25 @@ function ago(iso) {
 }
 
 var all = [], parity = null, sources = null, filter = 'all', query = '';
+var kbIndex = -1;
+
+var CHANGE_TYPES = [
+  { key: 'security', label: '\uD83D\uDD12 Security', cls: 'cb-security', re: /security|vulnerab|cve-|zero.day|exploit|advisory|injection|xss/i },
+  { key: 'breaking', label: '\u26A0\uFE0F Breaking', cls: 'cb-breaking', re: /breaking.change|deprecat|removal|end.of.life|sunset|discontinued/i },
+  { key: 'copilot', label: '\uD83E\uDD16 Copilot', cls: 'cb-copilot', re: /copilot|ai.assist|ai.completion/i },
+  { key: 'new', label: '\uD83C\uDD95 New', cls: 'cb-new', re: /introduc|now.available|general.availability|ga.release|new.feature|launch|preview/i },
+  { key: 'perf', label: '\u26A1 Perf', cls: 'cb-perf', re: /performance|faster|speed|latency|throughput/i },
+  { key: 'fix', label: '\uD83D\uDC1B Fix', cls: 'cb-fix', re: /bug.?fix|patch|hotfix|resolved/i }
+];
+
+function getChangeBadges(e) {
+  var text = (e.title + ' ' + e.description + ' ' + e.tags.join(' ')).toLowerCase();
+  var badges = [];
+  for (var i = 0; i < CHANGE_TYPES.length; i++) {
+    if (CHANGE_TYPES[i].re.test(text)) badges.push(CHANGE_TYPES[i]);
+  }
+  return badges;
+}
 
 var SRC_COLORS = {
   github: 'var(--github)', vscode: 'var(--vscode)', visualstudio: 'var(--vs)',
@@ -335,7 +412,36 @@ function renderParity() {
     box.innerHTML = buildTable(ides, parity.features);
     return;
   }
-  var html = '';
+  // Compute coverage index per IDE
+  var totals = {}, supported = {};
+  for (var ci = 0; ci < cats.length; ci++) {
+    var feats = cats[ci].features;
+    for (var fi = 0; fi < feats.length; fi++) {
+      for (var ii = 0; ii < ides.length; ii++) {
+        var ide = ides[ii];
+        totals[ide] = (totals[ide] || 0) + 1;
+        var val = feats[fi].support[ide];
+        if (val === true) supported[ide] = (supported[ide] || 0) + 1;
+        else if (val === 'partial') supported[ide] = (supported[ide] || 0) + 0.5;
+      }
+    }
+  }
+  var covColors = {};
+  ides.forEach(function (ide) {
+    var c = SRC_COLORS[Object.keys(SRC).find(function(k) { return SRC[k] === ide || ide.toLowerCase().indexOf(k) !== -1; })] || 'var(--accent)';
+    covColors[ide] = c;
+  });
+  var covHtml = '<div class="coverage-bar-wrap">';
+  for (var ci2 = 0; ci2 < ides.length; ci2++) {
+    var ide = ides[ci2];
+    var pct = totals[ide] ? Math.round(((supported[ide] || 0) / totals[ide]) * 100) : 0;
+    var col = covColors[ide] || 'var(--accent)';
+    covHtml += '<div class="coverage-item"><span class="cov-pct" style="color:' + col + '">' + pct + '%</span>' +
+      '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%;background:' + col + '"></div></div>' +
+      '<span>' + esc(ide) + '</span></div>';
+  }
+  covHtml += '</div>';
+  var html = covHtml;
   for (var i = 0; i < cats.length; i++) {
     html += '<div class="parity-cat">';
     html += '<div class="parity-cat-label">' + esc(cats[i].category) + '</div>';
@@ -380,10 +486,13 @@ function render() {
     return;
   }
   box.innerHTML = list.map(function (e) {
-    return '<div class="card' + (e.highlight ? ' highlighted' : '') + '" data-src="' + esc(e.source) + '">' +
+    var cb = getChangeBadges(e);
+    var cbHtml = cb.map(function (b) { return '<span class="change-badge ' + b.cls + '">' + b.label + '</span>'; }).join('');
+    return '<div class="card' + (e.highlight ? ' highlighted' : '') + '" data-src="' + esc(e.source) + '" tabindex="0">' +
       '<div class="card-top">' +
         '<span class="badge ' + esc(e.source) + '">' + esc(SRC[e.source] || e.source) + '</span>' +
         (e.is_copilot ? '<span class="badge copilot">Copilot</span>' : '') +
+        cbHtml +
         '<span class="score-badge ' + esc(e.severity) + '">' + e.score + '</span>' +
       '</div>' +
       '<div class="card-title"><a href="' + safeHref(e.link) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>' +
@@ -406,21 +515,126 @@ function updateStatus(shown) {
   st.textContent = (shown < total ? shown + ' of ' + total : '' + total) + ' entries' + (ts ? ' \u00b7 Built ' + ts : '');
 }
 
+/* --- Deep-linkable filters --- */
+function pushState() {
+  var params = [];
+  if (filter !== 'all') params.push('source=' + encodeURIComponent(filter));
+  if (query) params.push('q=' + encodeURIComponent(query));
+  var hash = params.length ? '#' + params.join('&') : '';
+  if (window.location.hash !== hash) history.replaceState(null, '', hash || window.location.pathname);
+}
+
+function readHash() {
+  var h = window.location.hash.slice(1);
+  if (!h) return;
+  var parts = h.split('&');
+  for (var i = 0; i < parts.length; i++) {
+    var kv = parts[i].split('=');
+    if (kv[0] === 'source') filter = decodeURIComponent(kv[1]);
+    if (kv[0] === 'q') { query = decodeURIComponent(kv[1]); searchEl.value = query; }
+  }
+  // Sync filter button state
+  document.querySelectorAll('.f-btn').forEach(function (b) {
+    b.classList.toggle('on', b.dataset.f === filter);
+  });
+}
+
 document.getElementById('filters').addEventListener('click', function (e) {
   var btn = e.target.closest('.f-btn');
   if (!btn) return;
   document.querySelectorAll('.f-btn').forEach(function (b) { b.classList.remove('on'); });
   btn.classList.add('on');
   filter = btn.dataset.f;
+  kbIndex = -1;
+  pushState();
   render();
 });
 
 var searchEl = document.getElementById('search');
-searchEl.addEventListener('input', function () { query = searchEl.value; render(); });
+searchEl.addEventListener('input', function () { query = searchEl.value; kbIndex = -1; pushState(); render(); });
+
+/* --- Keyboard navigation --- */
+function updateKbFocus() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function (c) { c.classList.remove('kb-active'); });
+  if (kbIndex >= 0 && kbIndex < cards.length) {
+    cards[kbIndex].classList.add('kb-active');
+    cards[kbIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+}
+
 document.addEventListener('keydown', function (e) {
-  if (e.key === '/' && document.activeElement !== searchEl) { e.preventDefault(); searchEl.focus(); }
-  if (e.key === 'Escape' && document.activeElement === searchEl) { searchEl.value = ''; query = ''; render(); searchEl.blur(); }
+  if (e.key === '/' && document.activeElement !== searchEl) { e.preventDefault(); searchEl.focus(); return; }
+  if (e.key === 'Escape' && document.activeElement === searchEl) { searchEl.value = ''; query = ''; kbIndex = -1; pushState(); render(); searchEl.blur(); return; }
+  if (document.activeElement === searchEl) return;
+  var cards = document.querySelectorAll('.card');
+  if (e.key === 'j' || e.key === 'ArrowDown') { e.preventDefault(); kbIndex = Math.min(kbIndex + 1, cards.length - 1); updateKbFocus(); }
+  if (e.key === 'k' || e.key === 'ArrowUp') { e.preventDefault(); kbIndex = Math.max(kbIndex - 1, 0); updateKbFocus(); }
+  if (e.key === 'o' || e.key === 'Enter') {
+    if (kbIndex >= 0 && kbIndex < cards.length) {
+      var link = cards[kbIndex].querySelector('.card-title a');
+      if (link) window.open(link.href, '_blank', 'noopener');
+    }
+  }
 });
+
+window.addEventListener('hashchange', function () { readHash(); render(); });
+
+/* --- Freshness indicator --- */
+function renderFreshness(builtAt) {
+  if (!builtAt) return;
+  var tag = document.getElementById('builtTag');
+  var hoursAgo = (Date.now() - new Date(builtAt)) / 3600000;
+  var cls = hoursAgo < 7 ? 'fresh' : hoursAgo < 13 ? 'stale' : 'old';
+  tag.innerHTML = '<span class="freshness-dot ' + cls + '"></span>Last built ' + new Date(builtAt).toLocaleString();
+}
+
+/* --- Changelog Pulse / Sparklines --- */
+function renderPulse() {
+  if (!all.length) return;
+  var section = document.getElementById('pulseSection');
+  section.style.display = '';
+
+  // Compute stats
+  var now = Date.now();
+  var week = 7 * 86400000;
+  var thisWeek = all.filter(function (e) { return (now - new Date(e.published)) < week; });
+  var critCount = all.filter(function (e) { return e.severity === 'critical'; }).length;
+  var copilotCount = all.filter(function (e) { return e.is_copilot; }).length;
+  var copilotPct = all.length ? Math.round((copilotCount / all.length) * 100) : 0;
+
+  var statsBox = document.getElementById('pulseStats');
+  statsBox.innerHTML =
+    '<div class="pulse-stat"><div class="ps-val">' + thisWeek.length + '</div><div class="ps-label">This Week</div></div>' +
+    '<div class="pulse-stat"><div class="ps-val">' + all.length + '</div><div class="ps-label">Total (90d)</div></div>' +
+    '<div class="pulse-stat"><div class="ps-val">' + critCount + '</div><div class="ps-label">Critical</div></div>' +
+    '<div class="pulse-stat"><div class="ps-val">' + copilotPct + '%</div><div class="ps-label">Copilot</div></div>';
+
+  // Build weekly sparklines per source
+  var srcKeys = Object.keys(SRC);
+  var weeks = 12;
+  var buckets = {};
+  srcKeys.forEach(function (k) { buckets[k] = new Array(weeks).fill(0); });
+  all.forEach(function (e) {
+    var wAgo = Math.floor((now - new Date(e.published)) / week);
+    if (wAgo >= 0 && wAgo < weeks && buckets[e.source]) buckets[e.source][weeks - 1 - wAgo]++;
+  });
+
+  var sparksBox = document.getElementById('pulseSparks');
+  var sparkHtml = '';
+  srcKeys.forEach(function (k) {
+    var data = buckets[k];
+    var max = Math.max.apply(null, data) || 1;
+    var pts = data.map(function (v, i) { return (i * (100 / (weeks - 1))).toFixed(1) + ',' + (28 - (v / max) * 24).toFixed(1); }).join(' ');
+    var areaStr = '0,28 ' + pts + ' 100,28';
+    var color = SRC_COLORS[k] || 'var(--text-3)';
+    sparkHtml += '<div class="pulse-spark">' +
+      '<div class="pulse-spark-label"><span class="spark-dot" style="background:' + color + '"></span>' + esc(SRC[k]) + ' <span style="opacity:.6">(' + data[data.length - 1] + ' this wk)</span></div>' +
+      '<svg viewBox="0 0 100 28" preserveAspectRatio="none"><polygon class="spark-area" points="' + areaStr + '" fill="' + color + '"/><polyline points="' + pts + '" stroke="' + color + '"/></svg>' +
+      '</div>';
+  });
+  sparksBox.innerHTML = sparkHtml;
+}
 
 (async function () {
   try {
@@ -431,10 +645,11 @@ document.addEventListener('keydown', function (e) {
     parity = data.parity || null;
     sources = data.sources || null;
     window._builtAt = data.built_at;
-    var tag = document.getElementById('builtTag');
-    if (data.built_at) tag.textContent = 'Last built ' + new Date(data.built_at).toLocaleString();
+    renderFreshness(data.built_at);
     renderParity();
+    renderPulse();
     renderAttribution();
+    readHash();
     render();
   } catch (err) {
     document.getElementById('entries').innerHTML =

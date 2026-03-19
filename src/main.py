@@ -12,6 +12,7 @@ from .parity import get_parity_matrix
 from .retention import filter_recent
 from .scorer import score_entry
 from .summarizer import add_summaries
+from .atom_feed import generate_atom
 
 logging.basicConfig(
     level=logging.INFO,
@@ -81,6 +82,9 @@ def build(out_dir: Path | None = None) -> None:
 
     (out / "data.json").write_text(json.dumps(data, indent=2))
     logger.info("Wrote %d entries → %s", len(scored), out / "data.json")
+
+    generate_atom(scored, built_at=data["built_at"], out_path=out / "feed.xml")
+    logger.info("Wrote Atom feed → %s", out / "feed.xml")
 
 
 if __name__ == "__main__":
