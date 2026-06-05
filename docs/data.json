@@ -6,7 +6,7 @@
       "title": "Visual Studio (Preview): Version 17.14.30",
       "description": "Released April 14th, 2026 Top bug fixesFrom the communityUpdate Node.js version for VS2022Feedback ticketUser stuck in permission waiting state for Copilot sessionFeedback ticket;Feedback ticketCopilot Opus 4.6 crashes with assistant messageFeedback ticketCopilot sessions errors out after session pauseFeedback ticketFix for encoding issues with non-ASCII charactersSupport for GitHub Copilot through Azure extension workload Security advisories addressedCVEDescription.NET Denial of Service Vulnera",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -23,7 +23,7 @@
       "title": "Visual Studio (Preview): Version 17.14.26",
       "description": "Released February 10th, 2026 Top bug fixesFrom the communityVS extensions fail to update from private galleries that don't provide proper metadataFeedback ticket Security advisories addressedCVEDescriptionGithub Copilot and Visual Studio Remote Code Execution VulnerabilityCVE-2026-21256This security update addresses a vulnerability where Improper neutralization of special elements used in a command ('command injection') in GitHub Copilot and Visual Studio allows an unauthorized attacker to execu",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -40,29 +40,10 @@
       "title": "Visual Studio (Preview): Version 17.14.12",
       "description": "Released August 12th, 2025 Security advisories addressedCVEDescritpionGitHub Copilot and Visual Studio Remote Code Execution VulnerabilityCVE-2025-53773This security update addresses a vulnerability where Copilot changes settings to set chat.tools.autoApprove to true",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
-      ],
-      "is_copilot": true,
-      "score": 75,
-      "severity": "critical",
-      "ai_summary": "Security advisory \u2014 review immediately for potential exposure.",
-      "highlight": true
-    },
-    {
-      "id": "a7e44b3c455d",
-      "source": "github",
-      "title": "Cloud and local sandboxes for GitHub Copilot now in public preview",
-      "description": "GitHub Copilot can now run inside secure, isolated sandboxes, both locally on your machine and in the cloud. Sandboxed Copilot experiences provide isolated environments for Copilot\u2019s tool execution locally as\u2026 The post Cloud and local sandboxes for GitHub Copilot now in public preview appeared first on The GitHub Blog .",
-      "link": "https://github.blog/changelog/2026-06-02-cloud-and-local-sandboxes-for-github-copilot-now-in-public-preview",
-      "published": "2026-06-02T17:25:00Z",
-      "tags": [
-        "release",
-        "application security",
-        "copilot",
-        "platform governance"
       ],
       "is_copilot": true,
       "score": 75,
@@ -76,7 +57,7 @@
       "title": "Visual Studio (Preview): Version 17.14.9",
       "description": "Released July 15th, 2025 Top bug fixesFrom the communityGitHub Copilot Agent Preview can't run terminal commands after running unit testsFeedback ticketCopilot file changes preview is emptyFeedback ticketEscape key doesn't close the find box in a XAML fileFeedback ticketFixed listing Android debug targets when there is an invalid Java executable in the PATH.Feedback ticketExtension update in VS 17.14Feedback ticketRemoved filtering on C++ #include completions so that full lists are shown when bo",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -93,7 +74,7 @@
       "title": "Visual Studio (GA): Version 17.14.9",
       "description": "Released July 15th, 2025 Top bug fixesFrom the communityGitHub Copilot Agent Preview can't run terminal commands after running unit testsFeedback ticketCopilot file changes preview is emptyFeedback ticketEscape key doesn't close the find box in a XAML fileFeedback ticketFixed listing Android debug targets when there is an invalid Java executable in the PATH.Feedback ticketExtension update in VS 17.14Feedback ticketRemoved filtering on C++ #include completions so that full lists are shown when bo",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -110,7 +91,7 @@
       "title": "Visual Studio (GA): Version 17.14.30",
       "description": "Released April 14th, 2026 Top bug fixesFrom the communityUpdate Node.js version for VS2022Feedback ticketUser stuck in permission waiting state for Copilot sessionFeedback ticket;Feedback ticketCopilot Opus 4.6 crashes with assistant messageFeedback ticketCopilot sessions errors out after session pauseFeedback ticketFix for encoding issues with non-ASCII charactersSupport for GitHub Copilot through Azure extension workload Security advisories addressedCVEDescription.NET Denial of Service Vulnera",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -127,7 +108,7 @@
       "title": "Visual Studio (GA): Version 17.14.26",
       "description": "Released February 10th, 2026 Top bug fixesFrom the communityVS extensions fail to update from private galleries that don't provide proper metadataFeedback ticket Security advisories addressedCVEDescriptionGithub Copilot and Visual Studio Remote Code Execution VulnerabilityCVE-2026-21256This security update addresses a vulnerability where Improper neutralization of special elements used in a command ('command injection') in GitHub Copilot and Visual Studio allows an unauthorized attacker to execu",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -144,7 +125,7 @@
       "title": "Visual Studio (GA): Version 17.14.12",
       "description": "Released August 12th, 2025 Security advisories addressedCVEDescritpionGitHub Copilot and Visual Studio Remote Code Execution VulnerabilityCVE-2025-53773This security update addresses a vulnerability where Copilot changes settings to set chat.tools.autoApprove to true",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -152,8 +133,8 @@
       "is_copilot": true,
       "score": 65,
       "severity": "high",
-      "ai_summary": "",
-      "highlight": false
+      "ai_summary": "Security advisory \u2014 review immediately for potential exposure.",
+      "highlight": true
     },
     {
       "id": "b6d691515c12",
@@ -161,7 +142,7 @@
       "title": "Visual Studio (Preview): Version 17.14.32",
       "description": "Released May 12th, 2026 Top bug fixesFrom the communityVisual Studio freezes every time after remote build CMake C++ DockerFeedback ticketChecking case of unsigned char vs. char fails with 19.44 works with 19.42Feedback ticketARM64 /EHa incorrect code motionFeedback ticket Security advisories addressedCVEDescriptionSQLite Memory Corruption VulnerabilityCVE-2025-6965There exists a vulnerability in SQLite versions before 3.50.2 where the number of aggregate terms could exceed the number of columns",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -177,7 +158,7 @@
       "title": "Visual Studio (Preview): Version 17.14.28",
       "description": "Released March 10th, 2026 Top bug fixesFrom the communityTrying to publish to a folder only builds and doesn't actually publish, unless extra optional components are installedFeedback ticketBug fix in MSVC optimizer that causes bad assembly code generation Security advisories addressedCVEDescription.NET Denial of Service VulnerabilityCVE-2026-26130A denial of service vulnerability exists in ASP.NET Core due to uncontrolled resource consumption..NET Elevation of Privilege VulnerabilityCVE-2026-26",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -193,7 +174,7 @@
       "title": "Visual Studio (Preview): Version 17.14.8",
       "description": "Released July 8th, 2025 Top bug fixesFrom the communityCan no longer build the net9.0-ios target of my MAUI projectFeedback ticketWhen setting the properties of a C# or VB.NET project, the \"Startup object\" dropdown will correctly show the objects you can choose from.Feedback ticketDocker containers are not showing up in Visual Studio for debugging.Feedback ticketUpdated the Visual Studio Installer to include the latest servicing release of the 10.0.26100 Windows SDK (10.0.26100.4188). Security a",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -209,7 +190,7 @@
       "title": "Visual Studio (Preview): Version 17.14.5",
       "description": "Released June 10th, 2025 Top bug fixesFrom the communityThe remote debugger via SSH hangs before hitting a breakpointFeedback ticket Security advisories addressedCVEDescritpionVisual Studio Remote Code Execution VulnerabilityCVE-2025-47959Improper neutralization of special elements used in a command ('command injection') in Visual Studio allows an authorized attacker to execute code over a network..NET and Visual Studio Remote Code Execution VulnerabilityCVE-2025-30399Untrusted search path in .N",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -242,7 +223,7 @@
       "title": "Visual Studio (GA): Version 17.14.32",
       "description": "Released May 12th, 2026 Top bug fixesFrom the communityVisual Studio freezes every time after remote build CMake C++ DockerFeedback ticketChecking case of unsigned char vs. char fails with 19.44 works with 19.42Feedback ticketARM64 /EHa incorrect code motionFeedback ticket Security advisories addressedCVEDescriptionSQLite Memory Corruption VulnerabilityCVE-2025-6965There exists a vulnerability in SQLite versions before 3.50.2 where the number of aggregate terms could exceed the number of columns",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -258,7 +239,7 @@
       "title": "Visual Studio (GA): Version 17.14.28",
       "description": "Released March 10th, 2026 Top bug fixesFrom the communityTrying to publish to a folder only builds and doesn't actually publish, unless extra optional components are installedFeedback ticketBug fix in MSVC optimizer that causes bad assembly code generation Security advisories addressedCVEDescription.NET Denial of Service VulnerabilityCVE-2026-26130A denial of service vulnerability exists in ASP.NET Core due to uncontrolled resource consumption..NET Elevation of Privilege VulnerabilityCVE-2026-26",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -274,7 +255,7 @@
       "title": "Visual Studio (GA): Version 17.14.8",
       "description": "Released July 8th, 2025 Top bug fixesFrom the communityCan no longer build the net9.0-ios target of my MAUI projectFeedback ticketWhen setting the properties of a C# or VB.NET project, the \"Startup object\" dropdown will correctly show the objects you can choose from.Feedback ticketDocker containers are not showing up in Visual Studio for debugging.Feedback ticketUpdated the Visual Studio Installer to include the latest servicing release of the 10.0.26100 Windows SDK (10.0.26100.4188). Security a",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -290,7 +271,7 @@
       "title": "Visual Studio (GA): Version 17.14.5",
       "description": "Released June 10th, 2025 Top bug fixesFrom the communityThe remote debugger via SSH hangs before hitting a breakpointFeedback ticket Security advisories addressedCVEDescritpionVisual Studio Remote Code Execution VulnerabilityCVE-2025-47959Improper neutralization of special elements used in a command ('command injection') in Visual Studio allows an authorized attacker to execute code over a network..NET and Visual Studio Remote Code Execution VulnerabilityCVE-2025-30399Untrusted search path in .N",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -301,43 +282,12 @@
       "highlight": false
     },
     {
-      "id": "5a978d741e84",
-      "source": "jetbrains",
-      "title": "7 Best Static Code Analysis Tools",
-      "description": "Investing in static code analysis tools might seem straightforward, but finding one that truly fits your team can be tough. Most tools promise the usual benefits: cleaner code, fewer bugs, better security, and more consistency in code reviews. Yet in reality, there\u2019s a big difference between a tool the team embraces and one that everyone [\u2026]",
-      "link": "https://blog.jetbrains.com/qodana/2026/04/best-static-code-analysis-tools/",
-      "published": "2026-04-20T13:01:22Z",
-      "tags": [
-        "qodana",
-        "static-code-analysis"
-      ],
-      "is_copilot": false,
-      "score": 50,
-      "severity": "high",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "616b289d261c",
-      "source": "vscode",
-      "title": "VS Code v1_122: Deprecated features and settings",
-      "description": "New deprecations in this release Upcoming deprecations",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163430Z",
-      "tags": [],
-      "is_copilot": false,
-      "score": 45,
-      "severity": "medium",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
       "id": "58021c806d36",
       "source": "visualstudio",
       "title": "Visual Studio (Preview): Version 17.14.31",
       "description": "Released April 21th, 2026 Top bug fixesFrom the communitySome applications using ASAN experience long build timeFeedback ticketGithub Copilot for Azure extension Query Azure Resource Graph tool failsFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -354,7 +304,7 @@
       "title": "Visual Studio (Preview): Version 17.14.29",
       "description": "Released March 17th, 2026 Top bug fixesFrom the communityCopilot hangs in agent mode when using multi-line terminal commands to edit or access filesFeedback ticketUpgrade to VS 17.14 broke IntelliSense for projects built with ClangFeedback ticketMulti-line commands issues by model hang when Posh is enabled in PowerShellFeedback ticketFix AddressSanitizer compatibility issue with Xbox Game OS",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -371,7 +321,7 @@
       "title": "Visual Studio (Preview): Version 17.14.27",
       "description": "Released February 18th, 2026 Top bug fixesFrom the communityAnalyze with Copilot response stopped abruptly mid streamFeedback ticketUpdating the installer to include the latest servicing release of the 10.0.26100 Windows SDK (10.0.26100.7705)Feedback ticketBug fix in MSVC optimizer that causes bad assembly code generation",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -388,7 +338,7 @@
       "title": "Visual Studio (Preview): Version 17.14.25",
       "description": "Released January 20th, 2026 Top bug fixesFrom the communityCopilot edit_file fails with DocumentId null error for XAML files.Feedback ticketAnalyzers crashing in 9.0.309 when used in msbuild",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -405,7 +355,7 @@
       "title": "Visual Studio (Preview): Version 17.14.24",
       "description": "Released January 13th, 2026 Top bug fixesFrom the communityVisual Studio 2022 doesn't update through the Extension manager fails for our WPF Extension.Feedback ticketCannot change Copilot settingsFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -422,7 +372,7 @@
       "title": "Visual Studio (Preview): Version 17.14.22",
       "description": "Released December 9th, 2025 Top bug fixesFrom the communityAddress Sanitizer's start address for thread local variables seems incorrectFeedback ticketx64 Emulator crash when an ARM64EC thread calls an x64 coroutine that calls another ARM64EC coroutineFeedback ticketThe extension is not updating and uninstalling properly through the Visual Studio Marketplace.Feedback ticketCopilot review/diff fails with \"Must be on view's current snapshot\" error in Visual StudioFeedback ticketFixed a bug seen in ",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -439,7 +389,7 @@
       "title": "Visual Studio (Preview): Version 17.14.20",
       "description": "Released November 11th, 2025 Top bug fixesFrom the communityGitHub Copilot Chat not showing Chat Text, only CodeFeedback ticketCopilot Language Server recognized as a threat by McAfee antivirus in VS 2026Feedback ticketDebug output not Valid, Visual Studio Analyze with Copilot in DebugFeedback ticketFixed integer overflow in std::stable_sort and std::ranges::stable_sort when sorting huge inputs (over a billion 1-byte elements) on x86.Fixed a crash in the vectorized implementations of std::wstrin",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -456,7 +406,7 @@
       "title": "Visual Studio (Preview): Version 17.14.19",
       "description": "Released October 27th, 2025 Top bug fixesFrom the communityCopilot Language Server recognized as a threat by McAfee antivirusFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -473,7 +423,7 @@
       "title": "Visual Studio (Preview): Version 17.14.17",
       "description": "Released October 14th, 2025 Top bug fixesFrom the community.NET Upgrade Assistant extension is no longer compatible with Visual Studio Enterprise 17.14.36518.9Feedback ticketFixed a potential crash when evaluating C++ expressions during debugging.Feedback ticketCopilot chat window theme conflicts with theme settingsFeedback ticketUsing copilot to debug an exception in Android never worksFeedback ticketFixed a bug with the Copilot Profiler Agent where it failed to create a BenchmarkDotNet benchma",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -490,7 +440,7 @@
       "title": "Visual Studio (Preview): Version 17.14.15",
       "description": "Released September 16th, 2025 Top bug fixesFrom the communityImprove GitHub Copilot Resilience to Internet Disruptions in Visual StudioFeedback ticketASAN false use-after-scope positive when access happens in exception handlerFeedback ticketC++ dynamic debugging initialises static locals incorrectlyFeedback ticket\"LINK : error LNK2001: unresolved external symbol\" after upgrading to VS 17.14.5Feedback ticketKASAN drivers fail to link referencing wide string functions (wcscat, wcscpy, wcsncpy)Feed",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -507,7 +457,7 @@
       "title": "Visual Studio (Preview): Version 17.14.13",
       "description": "Released August 19th, 2025 Top bug fixesFrom the communityVS 2022 v17.14.11 cannot load mcp serversFeedback ticketCopilot Agent mode breaks and cannot be recovered in this thread: System.ArgumentException: Illegal characters in path EditsFunctionHandler GetErrorsAsyncFeedback ticketLive Visual Tree and Live Property Explorer not workingFeedback ticketFixed an issue where missing string values were incorrectly written as empty strings in localized RESX files, leading to empty strings being return",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -524,7 +474,7 @@
       "title": "Visual Studio (Preview): Version 17.14.10",
       "description": "Released July 29th, 2025 Top bug fixesFrom the communityAfter Update to 17.14.8 I'm unable to build iOS-ProjectsFeedback ticketExtension update in VS 17.14Feedback ticketAgent mode unusable due to model_max_prompt_tokens_exceededFeedback ticketGithub Copilot hangs in Visual Studio when running dotnet commandsFeedback ticketThe GitHub Copilot UI in Visual Studio does not automatically update the MCP server dynamic tool listFeedback ticketVisual studio debugging option \"Always run untrusted source",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -541,7 +491,7 @@
       "title": "Visual Studio (Preview): Version 17.14.7",
       "description": "Released June 23rd, 2025 Top bug fixesFrom the communityGitHub Copilot Chat Error: \"Could not parse ov\" - Persistent IssueFeedback ticketFixed an issue when an include path was quoted with whitespace between the compiler option and the path, none of the files in the path would show up in the include completion list.Feedback ticketEscape not detected in Developer PowerShell in 17.14Feedback ticketUpdated to VS 17.14 - NCrunch 5.10.0.7 breaksFeedback ticketUnable to build VB.NET app in VS2022 17.1",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -558,7 +508,7 @@
       "title": "Visual Studio (Preview): Version 17.14.6",
       "description": "Released June 17th, 2025 Top bug fixesFrom the communityVS 17.14 regression: ASAN bad codegen with x64 Release configurationFeedback ticketSanitizer Coverage Produces Bad CodegenFeedback ticketFixed an issue where Razor formatting would sometimes appear to do nothing for specific syntax patterns or configurations.Feedback ticketGitHub Copilot Agent Preview can't run terminal commands after running unit testsFeedback ticketWhen EventTrigger's routing event is Loaded, the Storyboard cannot find th",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview",
         "copilot"
@@ -575,13 +525,30 @@
       "title": "Visual Studio (GA): Version 17.14.6",
       "description": "Released June 17th, 2025 Top bug fixesFrom the communityVS 17.14 regression: ASAN bad codegen with x64 Release configurationFeedback ticketSanitizer Coverage Produces Bad CodegenFeedback ticketFixed an issue where Razor formatting would sometimes appear to do nothing for specific syntax patterns or configurations.Feedback ticketGitHub Copilot Agent Preview can't run terminal commands after running unit testsFeedback ticketWhen EventTrigger's routing event is Loaded, the Storyboard cannot find th",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
       ],
       "is_copilot": true,
       "score": 38,
+      "severity": "medium",
+      "ai_summary": "",
+      "highlight": false
+    },
+    {
+      "id": "ebcbb60b0096",
+      "source": "github",
+      "title": "Agent tasks REST API now available for Copilot Pro, Pro+, and Max",
+      "description": "Copilot Pro, Pro+, and Max users can now programmatically start and track Copilot cloud agent tasks with the Agent tasks REST API, available in public preview. Copilot cloud agent works\u2026 The post Agent tasks REST API now available for Copilot Pro, Pro+, and Max appeared first on The GitHub Blog .",
+      "link": "https://github.blog/changelog/2026-06-04-agent-tasks-rest-api-now-available-for-copilot-pro-pro-and-max",
+      "published": "2026-06-04T20:42:10Z",
+      "tags": [
+        "release",
+        "copilot"
+      ],
+      "is_copilot": true,
+      "score": 35,
       "severity": "medium",
       "ai_summary": "",
       "highlight": false
@@ -627,7 +594,7 @@
       "title": "Visual Studio (GA): Version 17.14.31",
       "description": "Released April 21th, 2026 Top bug fixesFrom the communitySome applications using ASAN experience long build timeFeedback ticketGithub Copilot for Azure extension Query Azure Resource Graph tool failsFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -644,7 +611,7 @@
       "title": "Visual Studio (GA): Version 17.14.29",
       "description": "Released March 17th, 2026 Top bug fixesFrom the communityCopilot hangs in agent mode when using multi-line terminal commands to edit or access filesFeedback ticketUpgrade to VS 17.14 broke IntelliSense for projects built with ClangFeedback ticketMulti-line commands issues by model hang when Posh is enabled in PowerShellFeedback ticketFix AddressSanitizer compatibility issue with Xbox Game OS",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -661,7 +628,7 @@
       "title": "Visual Studio (GA): Version 17.14.27",
       "description": "Released February 18th, 2026 Top bug fixesFrom the communityAnalyze with Copilot response stopped abruptly mid streamFeedback ticketUpdating the installer to include the latest servicing release of the 10.0.26100 Windows SDK (10.0.26100.7705)Feedback ticketBug fix in MSVC optimizer that causes bad assembly code generation",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -678,7 +645,7 @@
       "title": "Visual Studio (GA): Version 17.14.25",
       "description": "Released January 20th, 2026 Top bug fixesFrom the communityCopilot edit_file fails with DocumentId null error for XAML files.Feedback ticketAnalyzers crashing in 9.0.309 when used in msbuild",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -695,7 +662,7 @@
       "title": "Visual Studio (GA): Version 17.14.24",
       "description": "Released January 13th, 2026 Top bug fixesFrom the communityVisual Studio 2022 doesn't update through the Extension manager fails for our WPF Extension.Feedback ticketCannot change Copilot settingsFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -712,7 +679,7 @@
       "title": "Visual Studio (GA): Version 17.14.22",
       "description": "Released December 9th, 2025 Top bug fixesFrom the communityAddress Sanitizer's start address for thread local variables seems incorrectFeedback ticketx64 Emulator crash when an ARM64EC thread calls an x64 coroutine that calls another ARM64EC coroutineFeedback ticketThe extension is not updating and uninstalling properly through the Visual Studio Marketplace.Feedback ticketCopilot review/diff fails with \"Must be on view's current snapshot\" error in Visual StudioFeedback ticketFixed a bug seen in ",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -729,7 +696,7 @@
       "title": "Visual Studio (GA): Version 17.14.20",
       "description": "Released November 11th, 2025 Top bug fixesFrom the communityGitHub Copilot Chat not showing Chat Text, only CodeFeedback ticketCopilot Language Server recognized as a threat by McAfee antivirus in VS 2026Feedback ticketDebug output not Valid, Visual Studio Analyze with Copilot in DebugFeedback ticketFixed integer overflow in std::stable_sort and std::ranges::stable_sort when sorting huge inputs (over a billion 1-byte elements) on x86.Fixed a crash in the vectorized implementations of std::wstrin",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -746,7 +713,7 @@
       "title": "Visual Studio (GA): Version 17.14.19",
       "description": "Released October 27th, 2025 Top bug fixesFrom the communityCopilot Language Server recognized as a threat by McAfee antivirusFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -763,7 +730,7 @@
       "title": "Visual Studio (GA): Version 17.14.17",
       "description": "Released October 14th, 2025 Top bug fixesFrom the community.NET Upgrade Assistant extension is no longer compatible with Visual Studio Enterprise 17.14.36518.9Feedback ticketFixed a potential crash when evaluating C++ expressions during debugging.Feedback ticketCopilot chat window theme conflicts with theme settingsFeedback ticketUsing copilot to debug an exception in Android never worksFeedback ticketFixed a bug with the Copilot Profiler Agent where it failed to create a BenchmarkDotNet benchma",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -780,7 +747,7 @@
       "title": "Visual Studio (GA): Version 17.14.15",
       "description": "Released September 16th, 2025 Top bug fixesFrom the communityImprove GitHub Copilot Resilience to Internet Disruptions in Visual StudioFeedback ticketASAN false use-after-scope positive when access happens in exception handlerFeedback ticketC++ dynamic debugging initialises static locals incorrectlyFeedback ticket\"LINK : error LNK2001: unresolved external symbol\" after upgrading to VS 17.14.5Feedback ticketKASAN drivers fail to link referencing wide string functions (wcscat, wcscpy, wcsncpy)Feed",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -797,7 +764,7 @@
       "title": "Visual Studio (GA): Version 17.14.13",
       "description": "Released August 19th, 2025 Top bug fixesFrom the communityVS 2022 v17.14.11 cannot load mcp serversFeedback ticketCopilot Agent mode breaks and cannot be recovered in this thread: System.ArgumentException: Illegal characters in path EditsFunctionHandler GetErrorsAsyncFeedback ticketLive Visual Tree and Live Property Explorer not workingFeedback ticketFixed an issue where missing string values were incorrectly written as empty strings in localized RESX files, leading to empty strings being return",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -814,7 +781,7 @@
       "title": "Visual Studio (GA): Version 17.14.10",
       "description": "Released July 29th, 2025 Top bug fixesFrom the communityAfter Update to 17.14.8 I'm unable to build iOS-ProjectsFeedback ticketExtension update in VS 17.14Feedback ticketAgent mode unusable due to model_max_prompt_tokens_exceededFeedback ticketGithub Copilot hangs in Visual Studio when running dotnet commandsFeedback ticketThe GitHub Copilot UI in Visual Studio does not automatically update the MCP server dynamic tool listFeedback ticketVisual studio debugging option \"Always run untrusted source",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -831,7 +798,7 @@
       "title": "Visual Studio (GA): Version 17.14.7",
       "description": "Released June 23rd, 2025 Top bug fixesFrom the communityGitHub Copilot Chat Error: \"Could not parse ov\" - Persistent IssueFeedback ticketFixed an issue when an include path was quoted with whitespace between the compiler option and the path, none of the files in the path would show up in the include completion list.Feedback ticketEscape not detected in Developer PowerShell in 17.14Feedback ticketUpdated to VS 17.14 - NCrunch 5.10.0.7 breaksFeedback ticketUnable to build VB.NET app in VS2022 17.1",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga",
         "copilot"
@@ -843,13 +810,14 @@
       "highlight": false
     },
     {
-      "id": "9d97df997a8a",
-      "source": "vscode",
-      "title": "VS Code v1_122: GitHub Copilot moves to usage based billing",
-      "description": "GitHub Copilot has moved tousage-based billing. Under the new model, each interaction consumes AI credits, which are calculated based on token (input, output, and cached) cost and on the model used. Complex interactions and more capable models consume more credits, while lightweight models and simpler tasks use fewer. Learn more about how you canoptimize your usage. Updated Copilot status dashboard",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163182Z",
+      "id": "bf1c77b46503",
+      "source": "github",
+      "title": "Fix with Copilot for failing Actions now in Pro, Pro+, and Max",
+      "description": "When a GitHub Actions job fails, Copilot Pro, Pro+, and Max subscribers can now ask Copilot cloud agent to fix it in one click. Click the Fix with Copilot button\u2026 The post Fix with Copilot for failing Actions now in Pro, Pro+, and Max appeared first on The GitHub Blog .",
+      "link": "https://github.blog/changelog/2026-06-04-fix-with-copilot-for-failing-actions-now-in-pro-pro-and-max",
+      "published": "2026-06-04T20:46:11Z",
       "tags": [
+        "improvement",
         "copilot"
       ],
       "is_copilot": true,
@@ -927,44 +895,12 @@
       "highlight": false
     },
     {
-      "id": "98d163e3fbdd",
-      "source": "github",
-      "title": "Copilot CLI: Improved UI, rubber duck, prompt scheduling, and voice input",
-      "description": "GitHub Copilot CLI is getting a major refresh at Microsoft Build 2026. Rubber duck and voice input are generally available today, and both prompt scheduling and a new experimental terminal\u2026 The post Copilot CLI: Improved UI, rubber duck, prompt scheduling, and voice input appeared first on The GitHub Blog .",
-      "link": "https://github.blog/changelog/2026-06-02-copilot-cli-improved-ui-rubber-duck-prompt-scheduling-and-voice-input",
-      "published": "2026-06-02T17:27:00Z",
-      "tags": [
-        "release",
-        "client apps",
-        "copilot"
-      ],
-      "is_copilot": true,
-      "score": 25,
-      "severity": "medium",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "d3e684208d88",
-      "source": "jetbrains",
-      "title": "Sky\u2019s the Limit Hackathon: 180 Projects Connecting Developers and Esports",
-      "description": "Earlier this winter, JetBrains and Cloud9 launched Sky\u2019s the Limit, a global hackathon created to bring together two communities that share the same DNA: developers and esports enthusiasts. The idea was straightforward \u2013 developers like solving complex problems, and esports is full of strategy, data, and performance questions. Put those together, and you get plenty [\u2026]",
-      "link": "https://blog.jetbrains.com/blog/2026/04/16/sky-s-the-limit-hackathon-180-projects-connecting-developers-and-esports/",
-      "published": "2026-04-16T10:18:39Z",
-      "tags": [],
-      "is_copilot": false,
-      "score": 25,
-      "severity": "medium",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
       "id": "547934dbbe97",
       "source": "visualstudio",
       "title": "Visual Studio (Preview): Version 17.14.33",
       "description": "Released May 20th, 2026 Top bug fixesFrom the communityUpdated localization experience for this release",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -980,7 +916,7 @@
       "title": "Visual Studio (Preview): Version 17.14.23",
       "description": "Released December 16th, 2025 Top bug fixesFrom the communitySearch is broken in the MCP Registries windowFeedback ticketUpdated vcpkg to2025-11-19",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -996,7 +932,7 @@
       "title": "Visual Studio (Preview): Version 17.14.21",
       "description": "Released November 19th, 2025 Top bug fixesFrom the communityFix LINK : fatal error LNK1000 when rebuilding project with incremental linking enabled.Feedback ticketFixed an incorrect codegen issue with ternary expressions involving expressions with arrays of different types.Feedback ticketASAN reorders validation calls leading to false negativesFeedback ticketSanitizer Coverage Blocklist BrokenFeedback ticketC4319 not emitted when compiling C codeFeedback ticketC++/CLI - inline namespace does not",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1012,7 +948,7 @@
       "title": "Visual Studio (Preview): Version 17.14.18",
       "description": "Released October 20th, 2025 Top bug fixesFrom the communityThe XAML editor will no longer mark nested classes as an error within {x:Static} and {x:Type} markup extensions. For example, {x:Static p:Class+Nested.Value} would be squiggled as an error even when it's valid.Feedback ticketSpell checker should split words between Lo and Ll/Lu categoriesFeedback ticketIn Visual Studio 17.14.13, .NET C# error squiggles are not showing in BlendFeedback ticketNew Visual Studio 2022 Updates Include LibCurl ",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1028,7 +964,7 @@
       "title": "Visual Studio (Preview): Version 17.14.16",
       "description": "Released September 23rd, 2025 Top bug fixesFrom the communityNuget Package Manager for Project -> Connect To Feed SpamFeedback ticketUsing UseDynamicDebugging makes link.exe return error 1422 and forget how to report error detailsFeedback ticketUnable to view existing TFVC check in policyFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1044,7 +980,7 @@
       "title": "Visual Studio (Preview): Version 17.14.14",
       "description": "Released September 9th, 2025 Top bug fixesFrom the communitySymbols download no longer workingFeedback ticketFixed an issue with the value category of member accesses.Feedback ticketFixed an issue with the value category of arrays.Feedback ticketFixed an ICE related to an incorrectly determined value category of an array.Feedback ticketFixed an issue where MSBuild would produce an internal error instead of reporting a build message when glob expansion failed..NET runtime is updated to 8.0.20 and",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1060,7 +996,7 @@
       "title": "Visual Studio (Preview): Version 17.14.11",
       "description": "Released August 4th, 2025 Top bug fixesFrom the communityFalse positive lifetime code analysis warning C26849: Don't dereference an invalid pointer (lifetime.1).Feedback ticketFixed legality checks for SIMD optimization.Feedback ticketRegression from 19.43: link.exe crashes during PDB generation with long symbolsFeedback ticketFixed incorrect chkstk calls on ARM64EC with /Gs0.Feedback ticketEnvironments in http-client.env.json are not picked up (since update to Visual Studio 17.14.0)Feedback tic",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1076,7 +1012,7 @@
       "title": "Visual Studio (Preview): Version 17.14.4",
       "description": "Released June 3rd, 2025 Top bug fixesFrom the communityType or Namespace Can't Be Found Error on the Razor's PageModelFeedback ticketVS 2022 17.14 p1.1 cannot complete a build. \"error D8040: error creating or communicating with child process.\"Feedback ticket#include completion no longer suggests files or folders in pathFeedback ticketVisual Studio kept on asking me to re-enter credential [expansion.microsoft.com tenant blocked]Feedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1092,7 +1028,7 @@
       "title": "Visual Studio (Preview): Version 17.14.3",
       "description": "Released May 28th, 2025 Top bug fixesFrom the communityProblem storing COleDateTime with RFX_DateFeedback ticketAndroid launch options are missingFeedback ticketWhen I create a new script in Unity and open VS again for editing, all the previously fixed tabs disappear.Feedback ticketI have to restart VS each time I change something in code (Xamarin)Feedback ticketChanging git branches causes open files to be closedFeedback ticket\"Quick Action & Refactoring > Create Definition\" not working in 17.1",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1108,7 +1044,7 @@
       "title": "Visual Studio (Preview): Version 17.14.2",
       "description": "Released May 22nd, 2025 Top bug fixesFrom the communityFixed an issue where VS will crash if opening a Solution containing C++ projects via a UNC path.Feedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1124,7 +1060,7 @@
       "title": "Visual Studio (Preview): Version 17.14.1",
       "description": "Released May 21th, 2025 Top bug fixesFrom the communityFeature 'xxx' is currently unavailable due to an internal error. System.NotSupportedException : The given path's format is not supported.Feedback ticketFixed an issue that occurs when creating an upload package for the Microsoft Store.Feedback ticketFixed an issue with the Razor source generator that could cause it to fail to run with aSystem.ArgumentOutOfRangeException.Fixed an issue that addresses a hang that occurred when closing a resour",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1140,7 +1076,7 @@
       "title": "Visual Studio (GA): Version 17.14.3",
       "description": "Released May 28th, 2025 Top bug fixesFrom the communityProblem storing COleDateTime with RFX_DateFeedback ticketAndroid launch options are missingFeedback ticketWhen I create a new script in Unity and open VS again for editing, all the previously fixed tabs disappear.Feedback ticketI have to restart VS each time I change something in code (Xamarin)Feedback ticketChanging git branches causes open files to be closedFeedback ticket\"Quick Action & Refactoring > Create Definition\" not working in 17.1",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1156,7 +1092,7 @@
       "title": "Visual Studio (Preview): In this article",
       "description": "",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1172,7 +1108,7 @@
       "title": "Visual Studio (Preview): Features",
       "description": "Explore the latest enhancements and updates in Visual Studio 2022 version 17.14. This section provides detailed information on new features, improvements, and tools available in this release. IDE MCP Authentication ManagementYou can now manage authentication credentials for MCP servers in a unified experience in Visual Studio.You can now manage authentication credentials for MCP servers in one place in Visual Studio, including credentials from outside the Visual Studio Keychain like Microsoft an",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1188,7 +1124,7 @@
       "title": "Visual Studio (Preview): Additional resources",
       "description": "",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview",
-      "published": "2026-06-04T20:06:58.529203Z",
+      "published": "2026-06-05T03:53:40.084838Z",
       "tags": [
         "preview"
       ],
@@ -1204,7 +1140,7 @@
       "title": "Visual Studio (GA): Features",
       "description": "Explore the latest enhancements and updates in Visual Studio 2022 version 17.14. This section provides detailed information on new features, improvements, and tools available in this release. IDE MCP Authentication ManagementYou can now manage authentication credentials for MCP servers in a unified experience in Visual Studio.You can now manage authentication credentials for MCP servers in one place in Visual Studio, including credentials from outside the Visual Studio Keychain like Microsoft an",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1215,12 +1151,12 @@
       "highlight": false
     },
     {
-      "id": "c9e355f6f0e8",
+      "id": "874a2cad9009",
       "source": "vscode",
-      "title": "VS Code v1_122: Agents",
-      "description": "Agents Window (Preview) TheAgents windowis a dedicated companion window optimized for exploring, iterating on, and reviewing agent sessions across projects, harnesses, and machines. We keep improving it and the updates for this release include: Session hover details: Hover over a session in the session list to see its details at a glance. The hover shows the session title with an icon indicating the harness used, along with the project, worktree, and files changed.Local VS Code harness (Insiders",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163261Z",
+      "title": "VS Code v1_124: June 1, 2026",
+      "description": "Regex flags for folding markers. Folding marker patterns inlanguage-configuration.jsonnow support a{ pattern, flags }object form, enabling flags like case-insensitive matching.#72989 We really appreciate people trying our new features as soon as they are ready, so check back here often and learn what's new.",
+      "link": "https://code.visualstudio.com/updates/v1_124",
+      "published": "2026-06-05T03:53:38.425594Z",
       "tags": [],
       "is_copilot": false,
       "score": 20,
@@ -1246,86 +1182,12 @@
       "highlight": false
     },
     {
-      "id": "eb7f8ab0b6dd",
-      "source": "jetbrains",
-      "title": "Introducing the Cloud9 JetStream Theme for JetBrains IDEs",
-      "description": "Cloud9 and JetBrains have been working together on projects that connect software development and esports, from the Sky\u2019s The Limit hackathon to custom tools built for live events, podcasts, and team content. One of the latest results of this collaboration is Cloud9 JetStream, a custom theme for JetBrains IDEs. The theme brings Cloud9\u2019s visual identity [\u2026]",
-      "link": "https://blog.jetbrains.com/blog/2026/05/27/introducing-the-cloud9-jetstream-theme-for-jetbrains-ides/",
-      "published": "2026-05-27T15:19:19Z",
-      "tags": [
-        "marketplace",
-        "new-products",
-        "news",
-        "gamedev"
-      ],
-      "is_copilot": false,
-      "score": 20,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "981a51f55802",
-      "source": "jetbrains",
-      "title": "Introducing JetBrains Central: An Open System for Agentic Software Development",
-      "description": "AI is beginning to change how software is produced. Instead of just assisting developers inside the editor, AI agents now investigate issues, generate code, run tests, and execute multi-step workflows. As this work scales, software development extends beyond individual tools or sessions. It becomes a distributed system of agents, environments, and workflows that operate across [\u2026]",
-      "link": "https://blog.jetbrains.com/blog/2026/03/24/introducing-jetbrains-central-an-open-system-for-agentic-software-development/",
-      "published": "2026-03-24T12:58:08Z",
-      "tags": [
-        "ai",
-        "eap",
-        "jetbrains",
-        "jetbrains-central",
-        "new-products",
-        "news"
-      ],
-      "is_copilot": false,
-      "score": 20,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "35dba9281f1b",
-      "source": "jetbrains",
-      "title": "Toolbox App 3.4: Remote IDE Lifecycle Hooks, macOS Fullscreen Fix, UTF-8 Support, and More",
-      "description": "Toolbox App 3.4 brings several long-awaited fixes alongside new capabilities for plugin developers. You can now hook into the remote IDE launch lifecycle, the Toolbox window behaves correctly in full-screen mode on macOS, and Windows users with non-ASCII usernames no longer need workarounds. The jetbrainsd service introduced in 3.3 also gets a round of reliability [\u2026]",
-      "link": "https://blog.jetbrains.com/toolbox-app/2026/03/toolbox-app-3-4-remote-ide-lifecycle-hooks-macos-fullscreen-fix-utf-8-support-and-more/",
-      "published": "2026-03-17T13:49:37Z",
-      "tags": [
-        "jetbrains-toolbox",
-        "toolbox-app"
-      ],
-      "is_copilot": false,
-      "score": 20,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "e5c8f6ba1620",
-      "source": "jetbrains",
-      "title": "How We Use AlphaEvolve to Make Complex IDE Algorithms Faster",
-      "description": "AlphaEvolve is a Google DeepMind algorithm-discovery system that uses Gemini to generate, test, and refine possible algorithm improvements. Its job is not to answer questions; it searches for faster ways to solve complex algorithmic problems. We tried it on a narrow but important part of IntelliJ-based IDEs: indexing, the background work that makes navigation, search, [\u2026]",
-      "link": "https://blog.jetbrains.com/ai/2026/05/how-we-use-alphaevolve-to-make-complex-ide-algorithms-faster/",
-      "published": "2026-05-29T13:46:30Z",
-      "tags": [
-        "ai",
-        "ai-in-ides"
-      ],
-      "is_copilot": false,
-      "score": 15,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
       "id": "bf7a38cfcaa7",
       "source": "visualstudio",
       "title": "Visual Studio (GA): Version 17.14.33",
       "description": "Released May 20th, 2026 Top bug fixesFrom the communityUpdated localization experience for this release",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1341,7 +1203,7 @@
       "title": "Visual Studio (GA): Version 17.14.23",
       "description": "Released December 16th, 2025 Top bug fixesFrom the communitySearch is broken in the MCP Registries windowFeedback ticketUpdated vcpkg to2025-11-19",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1357,7 +1219,7 @@
       "title": "Visual Studio (GA): Version 17.14.21",
       "description": "Released November 19th, 2025 Top bug fixesFrom the communityFix LINK : fatal error LNK1000 when rebuilding project with incremental linking enabled.Feedback ticketFixed an incorrect codegen issue with ternary expressions involving expressions with arrays of different types.Feedback ticketASAN reorders validation calls leading to false negativesFeedback ticketSanitizer Coverage Blocklist BrokenFeedback ticketC4319 not emitted when compiling C codeFeedback ticketC++/CLI - inline namespace does not",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1373,7 +1235,7 @@
       "title": "Visual Studio (GA): Version 17.14.18",
       "description": "Released October 20th, 2025 Top bug fixesFrom the communityThe XAML editor will no longer mark nested classes as an error within {x:Static} and {x:Type} markup extensions. For example, {x:Static p:Class+Nested.Value} would be squiggled as an error even when it's valid.Feedback ticketSpell checker should split words between Lo and Ll/Lu categoriesFeedback ticketIn Visual Studio 17.14.13, .NET C# error squiggles are not showing in BlendFeedback ticketNew Visual Studio 2022 Updates Include LibCurl ",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1389,7 +1251,7 @@
       "title": "Visual Studio (GA): Version 17.14.16",
       "description": "Released September 23rd, 2025 Top bug fixesFrom the communityNuget Package Manager for Project -> Connect To Feed SpamFeedback ticketUsing UseDynamicDebugging makes link.exe return error 1422 and forget how to report error detailsFeedback ticketUnable to view existing TFVC check in policyFeedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1405,7 +1267,7 @@
       "title": "Visual Studio (GA): Version 17.14.14",
       "description": "Released September 9th, 2025 Top bug fixesFrom the communitySymbols download no longer workingFeedback ticketFixed an issue with the value category of member accesses.Feedback ticketFixed an issue with the value category of arrays.Feedback ticketFixed an ICE related to an incorrectly determined value category of an array.Feedback ticketFixed an issue where MSBuild would produce an internal error instead of reporting a build message when glob expansion failed..NET runtime is updated to 8.0.20 and",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1421,7 +1283,7 @@
       "title": "Visual Studio (GA): Version 17.14.11",
       "description": "Released August 4th, 2025 Top bug fixesFrom the communityFalse positive lifetime code analysis warning C26849: Don't dereference an invalid pointer (lifetime.1).Feedback ticketFixed legality checks for SIMD optimization.Feedback ticketRegression from 19.43: link.exe crashes during PDB generation with long symbolsFeedback ticketFixed incorrect chkstk calls on ARM64EC with /Gs0.Feedback ticketEnvironments in http-client.env.json are not picked up (since update to Visual Studio 17.14.0)Feedback tic",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1437,7 +1299,7 @@
       "title": "Visual Studio (GA): Version 17.14.4",
       "description": "Released June 3rd, 2025 Top bug fixesFrom the communityType or Namespace Can't Be Found Error on the Razor's PageModelFeedback ticketVS 2022 17.14 p1.1 cannot complete a build. \"error D8040: error creating or communicating with child process.\"Feedback ticket#include completion no longer suggests files or folders in pathFeedback ticketVisual Studio kept on asking me to re-enter credential [expansion.microsoft.com tenant blocked]Feedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1453,7 +1315,7 @@
       "title": "Visual Studio (GA): Version 17.14.2",
       "description": "Released May 22nd, 2025 Top bug fixesFrom the communityFixed an issue where VS will crash if opening a Solution containing C++ projects via a UNC path.Feedback ticket",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1469,7 +1331,7 @@
       "title": "Visual Studio (GA): Version 17.14.1",
       "description": "Released May 21th, 2025 Top bug fixesFrom the communityFeature 'xxx' is currently unavailable due to an internal error. System.NotSupportedException : The given path's format is not supported.Feedback ticketFixed an issue that occurs when creating an upload package for the Microsoft Store.Feedback ticketFixed an issue with the Razor source generator that could cause it to fail to run with aSystem.ArgumentOutOfRangeException.Fixed an issue that addresses a hang that occurred when closing a resour",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1485,7 +1347,7 @@
       "title": "Visual Studio (GA): In this article",
       "description": "",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
       ],
@@ -1501,99 +1363,9 @@
       "title": "Visual Studio (GA): Additional resources",
       "description": "",
       "link": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
-      "published": "2026-06-04T20:06:58.298571Z",
+      "published": "2026-06-05T03:53:39.756168Z",
       "tags": [
         "ga"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "1033c0a1c051",
-      "source": "vscode",
-      "title": "VS Code v1_122: Thank you",
-      "description": "Contributions to our issue tracking: @gjsjohnmurray (John Murray)@RedCMD (RedCMD)@IllusionMH (Andrii Dieiev)@albertosantini (Alberto Santini) Contributions tovscode:",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163488Z",
-      "tags": [],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "8cf36701b848",
-      "source": "vscode",
-      "title": "VS Code v1_122: Notable fixes",
-      "description": "",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163453Z",
-      "tags": [],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "4ce35acc908b",
-      "source": "vscode",
-      "title": "VS Code v1_122: Editor Experience",
-      "description": "Improved issue reporting flow Setting:issueReporter.wizard.enabledOpen in VS CodeOpen in VS Code Insiders To help us better understand and fix any problems you might run into in VS Code, we've improved the issue reporting flow with a new issue reporting wizard. The wizard guides you through creating high quality issues directly from VS Code, including adding relevant details, screenshots, and video recordings.",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163407Z",
-      "tags": [
-        "editor"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "784363482e67",
-      "source": "vscode",
-      "title": "VS Code v1_122: Integrated browser",
-      "description": "Emulate devices The integrated browser now includes out-of-the-box support for device emulation including screen sizes, mobile / touch emulation, custom user-agents, and more. This is especially useful for web development and debugging, allowing you to quickly test your website's responsiveness and behavior across different devices directly from VS Code without needing to switch to a separate browser or use external tools. To get started from a browser tab, select theShow Emulation Toolbarcomman",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163372Z",
-      "tags": [],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "89aaa067aa08",
-      "source": "vscode",
-      "title": "VS Code v1_122: Remote Development",
-      "description": "TheRemote Development extensions, allow you to use aDev Container, remote machine via SSH orRemote Tunnels, or theWindows Subsystem for Linux(WSL) as a full-featured development environment. Highlights include: EOL for 32-bit ARM Linux hosts",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163342Z",
-      "tags": [
-        "remote"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "06ed4a673f1b",
-      "source": "vscode",
-      "title": "VS Code v1_122: Language Models",
-      "description": "Use BYOK without a GitHub sign in Previously, using your own language model API key in VS Code required signing in to GitHub. Now,Bring Your Own Key (BYOK)works without signing in, so you can use chat, tools, and MCP servers in air-gapped or restricted environments where GitHub sign-in isn't possible. This also enables fully offline workflows with local models like Ollama. To get started, runManage Language Modelsfrom the Command Palette and add a provider such as Anthropic, Azure, Gemini, OpenA",
-      "link": "https://code.visualstudio.com/updates/v1_122",
-      "published": "2026-06-04T20:06:58.163305Z",
-      "tags": [
-        "languages"
       ],
       "is_copilot": false,
       "score": 10,
@@ -1607,7 +1379,7 @@
       "title": "VS Code v1_123: Thank you",
       "description": "Contributions to our issue tracking: @gjsjohnmurray (John Murray)@RedCMD (RedCMD)@IllusionMH (Andrii Dieiev)@albertosantini (Alberto Santini) Contributions tovscode:",
       "link": "https://code.visualstudio.com/updates/v1_123",
-      "published": "2026-06-04T20:06:57.827075Z",
+      "published": "2026-06-05T03:53:38.467649Z",
       "tags": [],
       "is_copilot": false,
       "score": 10,
@@ -1621,7 +1393,7 @@
       "title": "VS Code v1_123: Editor Experience",
       "description": "Delayed extension auto-updates VS Code now applies a two-hour delay before automatically updating extensions to a newly published version. When automatic updates are enabled, new versions are auto-updated two hours after they are published, adding an extra layer of protection against problematic or potentially compromised releases. This never gets in your way, as you can still update any extension immediately at any time by using theUpdatebutton. While an update is waiting, the extension's detai",
       "link": "https://code.visualstudio.com/updates/v1_123",
-      "published": "2026-06-04T20:06:57.827043Z",
+      "published": "2026-06-05T03:53:38.467618Z",
       "tags": [
         "editor"
       ],
@@ -1637,8 +1409,24 @@
       "title": "VS Code v1_123: Integrated Browser",
       "description": "Favorite pages We've remodeled the address bar in the integrated browser into a more versatile experience where you can not only enter URLs but also favorite pages and easily access your favorites and open tabs. To add a page to your favorites, select the star icon in the browser URL bar.",
       "link": "https://code.visualstudio.com/updates/v1_123",
-      "published": "2026-06-04T20:06:57.827009Z",
+      "published": "2026-06-05T03:53:38.467592Z",
       "tags": [],
+      "is_copilot": false,
+      "score": 10,
+      "severity": "low",
+      "ai_summary": "",
+      "highlight": false
+    },
+    {
+      "id": "3f4cc5667770",
+      "source": "vscode",
+      "title": "VS Code v1_123: Language Models",
+      "description": "1M context window for Anthropic and OpenAI models VS Code now supports 1 million token context windows for compatible Anthropic and OpenAI models. This expanded context window enables you to work with significantly larger codebases and longer conversations without losing important context. The expanded context window is available when using supported models, such as Claude Opus 4.7 and GPT-5.5. Note: Larger context windows may consume more tokens per interaction, which increases AI credits usage",
+      "link": "https://code.visualstudio.com/updates/v1_123",
+      "published": "2026-06-05T03:53:38.467562Z",
+      "tags": [
+        "languages"
+      ],
       "is_copilot": false,
       "score": 10,
       "severity": "low",
@@ -1651,7 +1439,35 @@
       "title": "VS Code v1_123: Agents",
       "description": "Session sync and chronicle Setting:chat.sessionSync.enabledOpen in VS CodeOpen in VS Code InsidersThis setting is managed at the organization level. Contact your administrator to change it.ORG Your chat sessions now sync automatically to your GitHub account, giving you a personal, searchable history of your work across machines and workspaces.",
       "link": "https://code.visualstudio.com/updates/v1_123",
-      "published": "2026-06-04T20:06:57.826944Z",
+      "published": "2026-06-05T03:53:38.467506Z",
+      "tags": [],
+      "is_copilot": false,
+      "score": 10,
+      "severity": "low",
+      "ai_summary": "",
+      "highlight": false
+    },
+    {
+      "id": "99d37f03fa74",
+      "source": "vscode",
+      "title": "VS Code v1_124: June 2, 2026",
+      "description": "Multi-chat support for local sessions in the Agents window.#319602Background send in the Agents window. PressAlt+EnterorAlt-click Send to start a session without navigating into it, so you can immediately compose your next message.#319598Sessions grid keyboard navigation and bulk close. UseCtrl+1\u2013Ctrl+9(Cmd+1\u2013Cmd+9) to focus sessions by position, andCtrl+K Ctrl+W(Cmd+K Cmd+W) to close all sessions at once.#319596",
+      "link": "https://code.visualstudio.com/updates/v1_124",
+      "published": "2026-06-05T03:53:38.425561Z",
+      "tags": [],
+      "is_copilot": false,
+      "score": 10,
+      "severity": "low",
+      "ai_summary": "",
+      "highlight": false
+    },
+    {
+      "id": "ff7811398810",
+      "source": "vscode",
+      "title": "VS Code v1_124: June 4, 2026",
+      "description": "Scope chat input history to the current session in the Agents window. PressingUp/Downin the chat input only navigates prompts submitted in that same session, instead of including prompts from other sessions.#319341",
+      "link": "https://code.visualstudio.com/updates/v1_124",
+      "published": "2026-06-05T03:53:38.425484Z",
       "tags": [],
       "is_copilot": false,
       "score": 10,
@@ -1677,23 +1493,6 @@
       "highlight": false
     },
     {
-      "id": "ab2d47124343",
-      "source": "jetbrains",
-      "title": "Toolbox App 3.5: Better Remote Development Observability, More Reliable Enterprise Configuration, and Smoother Everyday Interactions",
-      "description": "Toolbox App 3.5 focuses on making daily work smoother and managed development environments easier to monitor. The app now supports interface zooming with familiar shortcuts, provides OpenTelemetry metrics for enterprise remote development connections, and handles several long-standing reliability issues more gracefully. Remote development observability The Toolbox App now emits OpenTelemetry metrics for remote development connection [\u2026]",
-      "link": "https://blog.jetbrains.com/toolbox-app/2026/06/toolbox-app-3-5-better-remote-development-observability-more-reliable-enterprise-configuration-and-smoother-everyday-interactions/",
-      "published": "2026-06-02T14:37:45Z",
-      "tags": [
-        "jetbrains-toolbox",
-        "toolbox-app"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
       "id": "56e0e3692234",
       "source": "xcode",
       "title": "Xcode 26.5 (17F42)",
@@ -1702,23 +1501,6 @@
       "published": "2026-05-11T17:00:00Z",
       "tags": [
         "release"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "ea73a15e741b",
-      "source": "jetbrains",
-      "title": "Our 2026 Direction: AI and Classic Workflows in JetBrains IDEs",
-      "description": "Two valid ways of writing code. One place to own it. Quick version for AI-news-tired readers: press here There are two ways developers create code now: We don\u2019t think one is better than the other. Our goal is to ensure both workflows can coexist inside JetBrains IDEs without hindering each other. In practice, this means [\u2026]",
-      "link": "https://blog.jetbrains.com/ai/2026/04/our-2026-direction-ai-and-classic-workflows-in-jetbrains-ides/",
-      "published": "2026-04-28T14:18:36Z",
-      "tags": [
-        "ai",
-        "ai-in-ides"
       ],
       "is_copilot": false,
       "score": 10,
@@ -1791,23 +1573,6 @@
       "highlight": false
     },
     {
-      "id": "ecb11aa96ed6",
-      "source": "jetbrains",
-      "title": "JetBrains Blog RSS Support Is Now Generally Available",
-      "description": "We\u2019re excited to announce that RSS feed support for blog.jetbrains.com and all JetBrains product blogs is now generally available. After months of development and rigorous testing across 47 RSS readers on 6 platforms, we\u2019re proud to deliver a reliable, standards-compliant way for you to read JetBrains content in the environment of your choice. What You [\u2026]",
-      "link": "https://blog.jetbrains.com/blog/2026/04/01/rss-support/",
-      "published": "2026-04-01T07:11:39Z",
-      "tags": [
-        "news",
-        "rss-feed"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
       "id": "7916ab2cd6c7",
       "source": "neovim",
       "title": "Neovim Nvim 0.12.0",
@@ -1832,27 +1597,6 @@
       "published": "2026-03-28T18:14:03Z",
       "tags": [
         "release"
-      ],
-      "is_copilot": false,
-      "score": 10,
-      "severity": "low",
-      "ai_summary": "",
-      "highlight": false
-    },
-    {
-      "id": "ff19e7e1d5cc",
-      "source": "jetbrains",
-      "title": "Why Your AI Governance Is Holding You Back, and You Don\u2019t Even Know It",
-      "description": "Most enterprises claim to govern their AI use. They have policy documents, review boards, approval flows, and sandbox environments. On paper, control exists. Then agents enter real software delivery workflows. They generate code, refactor systems, open pull requests, query internal data, trigger automations, and coordinate across tools. They move from experiment to execution. At that [\u2026]",
-      "link": "https://blog.jetbrains.com/ai/2026/03/why-your-ai-governance-is-holding-you-back-and-you-don-t-even-know-it/",
-      "published": "2026-03-19T13:21:25Z",
-      "tags": [
-        "ai",
-        "industry-trends",
-        "insights",
-        "jetbrains-ai",
-        "ai-in-software-development",
-        "enterprise-ai"
       ],
       "is_copilot": false,
       "score": 10,
@@ -2295,5 +2039,5 @@
       "feed": "https://planet.eclipse.org/planet/rss20.xml"
     }
   },
-  "built_at": "2026-06-04T20:07:01.461110+00:00"
+  "built_at": "2026-06-05T03:53:42.555755+00:00"
 }
