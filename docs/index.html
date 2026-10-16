@@ -13,13 +13,14 @@
     :root {
       --bg: #f8f9fb; --bg-2: #eef0f4;
       --surface: #fff; --surface-2: #f3f4f7; --surface-3: #e8eaef;
-      --text: #111827; --text-2: #6b7280; --text-3: #9ca3af;
+      --text: #111827; --text-2: #6b7280; --text-3: #6b7280;
       --border: #e2e5eb; --border-2: #eceef2;
       --accent: #6d5cff; --accent-2: #8b7aff; --accent-glow: rgba(109,92,255,.12);
       --github: #f78166; --vscode: #007acc; --vscode-ins: #24943e;
       --vs: #68217a; --jetbrains: #fe315d; --xcode: #147efb;
       --neovim: #57a143; --eclipse: #2c2255; --copilot: #8b5cf6;
       --sev-crit: #ef4444; --sev-high: #f59e0b; --sev-med: #eab308; --sev-low: #22c55e;
+      --success-text: #15803d;
       --radius: 14px; --radius-sm: 8px;
       --shadow: 0 1px 3px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.06);
       --shadow-md: 0 4px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
@@ -31,13 +32,14 @@
     @media (prefers-color-scheme: dark) { :root {
       --bg: #0c0e14; --bg-2: #141722;
       --surface: #1a1d28; --surface-2: #222633; --surface-3: #2c3040;
-      --text: #f0f2f5; --text-2: #8b91a0; --text-3: #555b6e;
+      --text: #f0f2f5; --text-2: #8b91a0; --text-3: #8b91a0;
       --border: #2a2e3d; --border-2: #333849;
       --accent-glow: rgba(109,92,255,.18);
       --shadow: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
       --shadow-md: 0 4px 12px rgba(0,0,0,.3), 0 1px 3px rgba(0,0,0,.15);
       --shadow-lg: 0 10px 30px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.2);
       --sev-crit: #f87171; --sev-high: #fbbf24; --sev-med: #facc15; --sev-low: #4ade80;
+      --success-text: #4ade80;
     }}
     html { scroll-behavior: smooth; }
     body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
@@ -60,10 +62,14 @@
     .parity-chevron { width: 20px; height: 20px; transition: transform .25s var(--anim); color: var(--text-2); flex-shrink: 0; }
     .parity-header.open .parity-chevron { transform: rotate(180deg); }
     .parity-body { max-height: 0; overflow: hidden; transition: max-height .4s var(--anim); }
-    .parity-body.open { max-height: 3000px; }
+    .parity-body.open { max-height: none; }
 
     .parity-cat { margin-top: 1.25rem; }
     .parity-cat:first-child { margin-top: .75rem; }
+    .parity-scroll { overflow-x: auto; }
+    .parity-scroll .parity-table { min-width: 960px; }
+    .parity-note { font-size: .75rem; color: var(--text-2); margin-top: .75rem; }
+    .parity-note a { color: var(--accent); }
     .parity-cat-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: .4rem; padding-left: .15rem; }
     .parity-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: .78rem; background: var(--surface-2); border-radius: var(--radius-sm); overflow: hidden; }
     .parity-table thead th { background: var(--surface-3); color: var(--text-2); font-weight: 600; padding: .5rem .4rem; font-size: .67rem; text-transform: uppercase; letter-spacing: .03em; }
@@ -109,6 +115,7 @@
     .card[data-src="xcode"] { border-left-color: var(--xcode); }
     .card[data-src="neovim"] { border-left-color: var(--neovim); }
     .card[data-src="eclipse"] { border-left-color: var(--eclipse); }
+    .card[data-src="copilot-app"] { border-left-color: var(--copilot); }
 
     .card-top { display: flex; align-items: center; gap: .35rem; margin-bottom: .35rem; flex-wrap: wrap; }
     .badge { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: .15rem .5rem; border-radius: 100px; color: #fff; white-space: nowrap; }
@@ -120,6 +127,7 @@
     .badge.neovim { background: var(--neovim); }
     .badge.eclipse { background: var(--eclipse); }
     .badge.copilot { background: var(--copilot); }
+    .badge.copilot-app { background: var(--copilot); }
     .score-badge { font-size: .6rem; font-weight: 700; padding: .15rem .5rem; border-radius: 100px; margin-left: auto; white-space: nowrap; }
     .score-badge.critical { background: var(--sev-crit); color: #fff; }
     .score-badge.high { background: var(--sev-high); color: #fff; }
@@ -175,7 +183,7 @@
     .change-badge.cb-security { background: rgba(239,68,68,.12); color: var(--sev-crit); }
     .change-badge.cb-breaking { background: rgba(245,158,11,.12); color: var(--sev-high); }
     .change-badge.cb-copilot { background: rgba(139,92,246,.12); color: var(--copilot); }
-    .change-badge.cb-new { background: rgba(34,197,94,.12); color: var(--sev-low); }
+    .change-badge.cb-new { background: rgba(34,197,94,.12); color: var(--success-text); }
     .change-badge.cb-perf { background: rgba(59,130,246,.12); color: #3b82f6; }
     .change-badge.cb-fix { background: var(--surface-2); color: var(--text-2); }
 
@@ -221,9 +229,7 @@
       .hero h1 { font-size: 1.5rem; }
       .container { padding: 0 .75rem; }
       .parity-card { padding: 1rem; }
-      .parity-table { font-size: .62rem; }
       .parity-table td, .parity-table th { padding: .3rem .2rem; }
-      .parity-table td:first-child { min-width: 100px; font-size: .6rem; }
       .card { padding: .85rem .9rem; }
       .pulse-stats { gap: .5rem; }
       .pulse-stat .ps-val { font-size: 1.1rem; }
@@ -235,12 +241,25 @@
     .card:nth-child(3) { animation-delay: .06s; }
     .card:nth-child(4) { animation-delay: .09s; }
     .card:nth-child(5) { animation-delay: .12s; }
+    .parity-table thead th, .parity-cat-label, .parity-legend,
+    .coverage-item, .severity-bar, .badge, .score-badge, .change-badge,
+    .tag, .time-ago, .status-bar, .footer, .attrib-item, .attrib-header,
+    .pulse-stat .ps-label, .pulse-spark-label, .kbd-legend, .kbd-legend kbd {
+      font-size: .75rem;
+    }
+    .card-link, .attrib-link { min-height: 24px; align-content: center; }
+    .card-link { align-items: center; }
+    .pulse-spark { min-width: 145px; }
+    .pulse-spark-label { flex-wrap: wrap; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
 <body>
   <div class="hero">
     <h1>Developer Productivity Changelog Feed</h1>
-    <p>IDE &amp; Copilot changelog tracker &middot; scored by importance</p>
+    <p>Copilot surfaces &amp; IDE changelog tracker &middot; scored by importance</p>
     <div class="built-tag" id="builtTag"></div>
   </div>
   <div class="container parity-section">
@@ -255,6 +274,7 @@
           <span><span class="p-yes">&#10003;</span> Supported</span>
           <span><span class="p-partial">&#9681;</span> Partial / Preview</span>
           <span><span class="p-no">&#10005;</span> Not available</span>
+          <span><span class="p-no">?</span> Not verified</span>
         </div>
       </div>
     </div>
@@ -283,6 +303,7 @@
         <button class="f-btn on" data-f="all">All</button>
         <button class="f-btn" data-f="github"><span class="dot" style="background:var(--github)"></span>GitHub</button>
         <button class="f-btn" data-f="copilot"><span class="dot" style="background:var(--copilot)"></span>Copilot</button>
+        <button class="f-btn" data-f="copilot-app"><span class="dot" style="background:var(--copilot)"></span>GitHub Copilot App</button>
         <button class="f-btn" data-f="vscode"><span class="dot" style="background:var(--vscode)"></span>VS Code</button>
         <button class="f-btn" data-f="visualstudio"><span class="dot" style="background:var(--vs)"></span>Visual Studio</button>
         <button class="f-btn" data-f="jetbrains"><span class="dot" style="background:var(--jetbrains)"></span>JetBrains</button>
@@ -307,7 +328,8 @@
 <script>
 var SRC = {
   github: 'GitHub', vscode: 'VS Code', visualstudio: 'Visual Studio',
-  jetbrains: 'JetBrains', xcode: 'Xcode', neovim: 'Neovim', eclipse: 'Eclipse'
+  jetbrains: 'JetBrains', xcode: 'Xcode', neovim: 'Neovim', eclipse: 'Eclipse',
+  'copilot-app': 'GitHub Copilot App'
 };
 
 function esc(s) {
@@ -357,7 +379,8 @@ function getChangeBadges(e) {
 
 var SRC_COLORS = {
   github: 'var(--github)', vscode: 'var(--vscode)', visualstudio: 'var(--vs)',
-  jetbrains: 'var(--jetbrains)', xcode: 'var(--xcode)', neovim: 'var(--neovim)', eclipse: 'var(--eclipse)'
+  jetbrains: 'var(--jetbrains)', xcode: 'var(--xcode)', neovim: 'var(--neovim)', eclipse: 'var(--eclipse)',
+  'copilot-app': 'var(--copilot)'
 };
 
 var parityToggle = document.getElementById('parityToggle');
@@ -379,8 +402,8 @@ var IDE_LOGOS = {
 };
 
 function buildTable(ides, features) {
-  var colW = Math.floor(76 / ides.length);
-  var h = '<table class="parity-table"><colgroup><col style="width:24%">';
+  var colW = 76 / ides.length;
+  var h = '<div class="parity-scroll" role="region" aria-label="Copilot feature comparison" tabindex="0"><table class="parity-table"><colgroup><col style="width:24%">';
   for (var c = 0; c < ides.length; c++) h += '<col style="width:' + colW + '%">';
   h += '</colgroup><thead><tr><th style="text-align:left">Feature</th>';
   for (var i = 0; i < ides.length; i++) {
@@ -393,20 +416,21 @@ function buildTable(ides, features) {
     h += '<tr><td>' + esc(f.name) + '</td>';
     for (var j = 0; j < ides.length; j++) {
       var v = f.support[ides[j]];
-      if (v === true) h += '<td class="p-yes">&#10003;</td>';
-      else if (v === 'partial') h += '<td class="p-partial">&#9681;</td>';
-      else h += '<td class="p-no">&#10005;</td>';
+      if (v === true) h += '<td class="p-yes" aria-label="Supported">&#10003;</td>';
+      else if (v === 'partial') h += '<td class="p-partial" aria-label="Limited support">&#9681;</td>';
+      else if (v === false) h += '<td class="p-no" aria-label="Not available">&#10005;</td>';
+      else h += '<td class="p-no" aria-label="Not verified">?</td>';
     }
     h += '</tr>';
   }
-  h += '</tbody></table>';
+  h += '</tbody></table></div>';
   return h;
 }
 
 function renderParity() {
   if (!parity) return;
   var box = document.getElementById('parityContent');
-  var ides = parity.ides;
+  var ides = parity.surfaces || parity.ides;
   var cats = parity.categories || [];
   if (!cats.length && parity.features) {
     box.innerHTML = buildTable(ides, parity.features);
@@ -419,8 +443,9 @@ function renderParity() {
     for (var fi = 0; fi < feats.length; fi++) {
       for (var ii = 0; ii < ides.length; ii++) {
         var ide = ides[ii];
-        totals[ide] = (totals[ide] || 0) + 1;
         var val = feats[fi].support[ide];
+        if (val == null) continue;
+        totals[ide] = (totals[ide] || 0) + 1;
         if (val === true) supported[ide] = (supported[ide] || 0) + 1;
         else if (val === 'partial') supported[ide] = (supported[ide] || 0) + 0.5;
       }
@@ -436,12 +461,18 @@ function renderParity() {
     var ide = ides[ci2];
     var pct = totals[ide] ? Math.round(((supported[ide] || 0) / totals[ide]) * 100) : 0;
     var col = covColors[ide] || 'var(--accent)';
-    covHtml += '<div class="coverage-item"><span class="cov-pct" style="color:' + col + '">' + pct + '%</span>' +
+    covHtml += '<div class="coverage-item"><span class="cov-pct">' + pct + '%</span>' +
       '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%;background:' + col + '"></div></div>' +
       '<span>' + esc(ide) + '</span></div>';
   }
   covHtml += '</div>';
-  var html = covHtml;
+  var html = covHtml + '<p class="parity-note">Coverage uses verified cells only; limited support counts as half. ? = not verified, not necessarily unavailable. Scroll tables horizontally on narrow screens.</p>';
+  var details = parity.surface_details || {};
+  Object.keys(details).forEach(function (surface) {
+    var detail = details[surface];
+    html += '<p class="parity-note"><a href="' + safeHref(detail.url) + '" target="_blank" rel="noopener">' +
+      esc(surface) + ' documentation</a> &middot; Reviewed ' + esc(detail.reviewed_at) + '. ' + esc(detail.note) + '</p>';
+  });
   for (var i = 0; i < cats.length; i++) {
     html += '<div class="parity-cat">';
     html += '<div class="parity-cat-label">' + esc(cats[i].category) + '</div>';
@@ -472,11 +503,9 @@ function render() {
   var q = query.toLowerCase();
   var list = all.filter(function (e) {
     if (filter === 'copilot' && !e.is_copilot) return false;
-    if (filter !== 'all' && filter !== 'copilot' && e.source !== filter) return false;
-    if (q && e.title.toLowerCase().indexOf(q) === -1
-        && e.description.toLowerCase().indexOf(q) === -1
-        && !e.tags.some(function (t) { return t.indexOf(q) !== -1; }))
-      return false;
+    if (filter !== 'all' && filter !== 'copilot' && e.source !== filter
+        && !(filter === 'copilot-app' && (e.surfaces || []).includes(filter))) return false;
+    if (q && e.searchText.indexOf(q) === -1) return false;
     return true;
   });
   var box = document.getElementById('entries');
@@ -486,7 +515,7 @@ function render() {
     return;
   }
   box.innerHTML = list.map(function (e) {
-    var cb = getChangeBadges(e);
+    var cb = e.changeBadges;
     var cbHtml = cb.map(function (b) { return '<span class="change-badge ' + b.cls + '">' + b.label + '</span>'; }).join('');
     return '<div class="card' + (e.highlight ? ' highlighted' : '') + '" data-src="' + esc(e.source) + '" tabindex="0">' +
       '<div class="card-top">' +
@@ -496,7 +525,7 @@ function render() {
         '<span class="score-badge ' + esc(e.severity) + '">' + e.score + '</span>' +
       '</div>' +
       '<div class="card-title"><a href="' + safeHref(e.link) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>' +
-      (e.description ? '<div class="card-desc">' + esc(e.description) + '</div>' : '') +
+      (e.description ? '<div class="card-desc" title="' + esc(e.description).replace(/"/g, '&quot;') + '">' + esc(e.description) + '</div>' : '') +
       (e.ai_summary ? '<div class="card-ai">' + esc(e.ai_summary) + '</div>' : '') +
       '<div class="card-meta">' +
         (e.tags.length ? '<div class="card-tags">' + e.tags.slice(0, 6).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
@@ -642,6 +671,11 @@ function renderPulse() {
     if (!res.ok) throw new Error(res.status);
     var data = await res.json();
     all = data.entries || [];
+    all.forEach(function (e) {
+      e.searchText = [e.title, e.description, e.ai_summary || '', SRC[e.source] || e.source]
+        .concat(e.tags, e.surfaces || []).join(' ').toLowerCase();
+      e.changeBadges = getChangeBadges(e);
+    });
     parity = data.parity || null;
     sources = data.sources || null;
     window._builtAt = data.built_at;

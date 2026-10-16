@@ -1,6 +1,6 @@
 """Unit tests for parity matrix."""
 
-from src.parity import IDES, get_parity_matrix
+from src.parity import IDES, SURFACES, get_parity_matrix
 
 
 class TestParityMatrix:
@@ -22,7 +22,7 @@ class TestParityMatrix:
     def test_has_categories(self):
         m = get_parity_matrix()
         assert "categories" in m
-        assert len(m["categories"]) == 5
+        assert len(m["categories"]) == 6
 
     def test_category_structure(self):
         m = get_parity_matrix()
@@ -44,7 +44,7 @@ class TestParityMatrix:
 
     def test_support_values_valid(self):
         m = get_parity_matrix()
-        valid = {True, False, "partial"}
+        valid = {True, False, "partial", None}
         for cat in m["categories"]:
             for feat in cat["features"]:
                 for ide, status in feat["support"].items():
@@ -54,7 +54,7 @@ class TestParityMatrix:
         m = get_parity_matrix()
         for cat in m["categories"]:
             for feat in cat["features"]:
-                for ide in IDES:
+                for ide in SURFACES:
                     assert ide in feat["support"], (
                         f"Missing {ide} in {feat['name']}"
                     )
@@ -75,3 +75,20 @@ class TestParityMatrix:
         assert "Context & Intelligence" in names
         assert "Extensibility & Customization" in names
         assert "DevOps & CLI" in names
+        assert "App Workflows" in names
+
+    def test_app_support_distinguishes_documented_limited_and_unknown(self):
+        matrix = get_parity_matrix()
+        assert matrix["surfaces"] == [*IDES, "GitHub Copilot App"]
+        features = {
+            feature["name"]: feature["support"]
+            for category in matrix["categories"]
+            for feature in category["features"]
+        }
+        assert features["Agent Mode"]["GitHub Copilot App"] is True
+        assert features["Code Completions"]["GitHub Copilot App"] is None
+        assert features["Desktop Computer Use"]["GitHub Copilot App"] == "partial"
+        assert features["Shared Agent Canvases"]["VS Code"] is None
+        detail = matrix["surface_details"]["GitHub Copilot App"]
+        assert detail["url"].startswith("https://docs.github.com/")
+        assert "macOS and Windows" in detail["note"]

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .feeds import fetch_all
@@ -43,6 +43,11 @@ def build(out_dir: Path | None = None) -> None:
             "name": "GitHub Blog – Changelog",
             "url": "https://github.blog/changelog/",
             "feed": "https://github.blog/changelog/feed/",
+        },
+        "copilot-app": {
+            "name": "GitHub Copilot App – Releases",
+            "url": "https://github.com/github/app/releases",
+            "feed": "https://github.com/github/app/releases.atom",
         },
         "vscode": {
             "name": "Visual Studio Code – Release Notes",

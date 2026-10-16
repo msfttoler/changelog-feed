@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import re
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from typing import Callable
 
@@ -51,6 +53,15 @@ def _text(html: str) -> str:
 
 
 _COPILOT_KW = {"copilot", "github copilot"}
+_APP_PATTERN = re.compile(
+    r"(?<!microsoft )\b(?:github\s+)?copilot[\s-]+(?:desktop[\s-]+)?app\b", re.I
+)
+
+
+def _parse_feed(url: str) -> feedparser.FeedParserDict:
+    response = requests.get(url, timeout=15)
+    response.raise_for_status()
+    return feedparser.parse(response.content)
 
 
 # ---------------------------------------------------------------------------
@@ -62,19 +73,20 @@ _GITHUB_FEED = "https://github.blog/changelog/feed/"
 
 def fetch_github() -> list[ChangeEntry]:
     def _fetch() -> list[ChangeEntry]:
-        feed = feedparser.parse(_GITHUB_FEED)
+        feed = _parse_feed(_GITHUB_FEED)
         out: list[ChangeEntry] = []
         for entry in feed.entries:
             tags = [t.term.lower() for t in getattr(entry, "tags", [])]
             link = entry.get("link", "")
             title = entry.get("title", "Untitled")
-            desc = _text(entry.get("summary", ""))[:500]
+            full_desc = _text(entry.get("summary", ""))
+            desc = full_desc[:500]
             pub = (
                 datetime(*entry.published_parsed[:6], tzinfo=timezone.utc)
                 if getattr(entry, "published_parsed", None)
                 else datetime.now(timezone.utc)
             )
-            combined = (title + " " + " ".join(tags)).lower()
+            combined = (title + " " + full_desc + " " + " ".join(tags)).lower()
             is_copilot = any(kw in combined for kw in _COPILOT_KW)
             out.append(
                 ChangeEntry(
@@ -86,11 +98,53 @@ def fetch_github() -> list[ChangeEntry]:
                     published=pub,
                     tags=tags[:8],
                     is_copilot=is_copilot,
+                    surfaces=["copilot-app"] if _APP_PATTERN.search(combined) else [],
                 )
             )
         return out
 
     return _cached("github", _fetch)
+
+
+# ---------------------------------------------------------------------------
+# GitHub Copilot App (official GitHub releases)
+# ---------------------------------------------------------------------------
+
+_COPILOT_APP_API = "https://api.github.com/repos/github/app/releases?per_page=100"
+
+
+def fetch_copilot_app() -> list[ChangeEntry]:
+    def _fetch() -> list[ChangeEntry]:
+        response = requests.get(
+            _COPILOT_APP_API,
+            headers={"Accept": "application/vnd.github+json"},
+            timeout=15,
+        )
+        response.raise_for_status()
+        entries = []
+        for release in response.json():
+            if release.get("draft"):
+                continue
+            link = release["html_url"]
+            published = datetime.fromisoformat(release["published_at"].replace("Z", "+00:00"))
+            body = release.get("body") or ""
+            tags = ["copilot", "copilot-app", "release"]
+            if release.get("prerelease"):
+                tags.append("prerelease")
+            entries.append(ChangeEntry(
+                id=_sha(link),
+                source="copilot-app",
+                title=f"GitHub Copilot App {release.get('name') or release['tag_name']}",
+                description=re.sub(r"[#*`]", "", _text(body)).strip()[:500],
+                link=link,
+                published=published,
+                tags=tags,
+                surfaces=["copilot-app"],
+                is_copilot=True,
+            ))
+        return entries
+
+    return _cached("copilot-app", _fetch)
 
 
 # ---------------------------------------------------------------------------
@@ -267,7 +321,7 @@ _JETBRAINS_FEED = "https://blog.jetbrains.com/blog/feed/"
 
 def fetch_jetbrains() -> list[ChangeEntry]:
     def _fetch() -> list[ChangeEntry]:
-        feed = feedparser.parse(_JETBRAINS_FEED)
+        feed = _parse_feed(_JETBRAINS_FEED)
         out: list[ChangeEntry] = []
         for entry in feed.entries:
             link = entry.get("link", "")
@@ -307,7 +361,7 @@ _XCODE_FEED = "https://developer.apple.com/news/releases/rss/releases.rss"
 
 def fetch_xcode() -> list[ChangeEntry]:
     def _fetch() -> list[ChangeEntry]:
-        feed = feedparser.parse(_XCODE_FEED)
+        feed = _parse_feed(_XCODE_FEED)
         out: list[ChangeEntry] = []
         for entry in feed.entries:
             title = entry.get("title", "")
@@ -405,7 +459,7 @@ _ECLIPSE_FEED = "https://planet.eclipse.org/planet/rss20.xml"
 
 def fetch_eclipse() -> list[ChangeEntry]:
     def _fetch() -> list[ChangeEntry]:
-        feed = feedparser.parse(_ECLIPSE_FEED)
+        feed = _parse_feed(_ECLIPSE_FEED)
         out: list[ChangeEntry] = []
         eclipse_kw = {"eclipse ide", "eclipse platform", "eclipse release", "eclipse 4.", "eclipse 202"}
         for entry in feed.entries:
@@ -448,18 +502,22 @@ def fetch_eclipse() -> list[ChangeEntry]:
 
 def fetch_all() -> list[ChangeEntry]:
     entries: list[ChangeEntry] = []
-    for fetcher in (
+    fetchers = (
         fetch_github,
+        fetch_copilot_app,
         fetch_vscode,
         fetch_visualstudio,
         fetch_jetbrains,
         fetch_xcode,
         fetch_neovim,
         fetch_eclipse,
-    ):
-        try:
-            entries.extend(fetcher())
-        except Exception:
-            logger.exception("Fetcher %s failed", fetcher.__name__)
+    )
+    with ThreadPoolExecutor(max_workers=len(fetchers)) as executor:
+        futures = [(fetcher, executor.submit(fetcher)) for fetcher in fetchers]
+        for fetcher, future in futures:
+            try:
+                entries.extend(future.result())
+            except Exception:
+                logger.exception("Fetcher %s failed", fetcher.__name__)
     entries.sort(key=lambda e: e.published, reverse=True)
     return entries

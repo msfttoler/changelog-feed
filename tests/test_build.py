@@ -125,7 +125,7 @@ class TestBuildPipeline:
 
         data = json.loads((tmp_path / "data.json").read_text())
         sources = data["sources"]
-        expected_keys = {"github", "vscode", "visualstudio", "jetbrains", "xcode", "neovim", "eclipse"}
+        expected_keys = {"github", "copilot-app", "vscode", "visualstudio", "jetbrains", "xcode", "neovim", "eclipse"}
         assert set(sources.keys()) == expected_keys
         for key, src in sources.items():
             assert "name" in src
@@ -152,3 +152,22 @@ class TestBuildPipeline:
             build(out_dir=out)
 
         assert (out / "data.json").exists()
+
+    def test_app_surface_survives_json_and_atom_build(self, tmp_path):
+        entry = _fake_entries(1)[0].model_copy(update={
+            "source": "copilot-app",
+            "title": "GitHub Copilot App v1.1.29",
+            "tags": ["copilot", "copilot-app", "release"],
+            "surfaces": ["copilot-app"],
+            "is_copilot": True,
+        })
+        with (
+            patch("src.main.fetch_all", return_value=[entry]),
+            patch("src.main.add_summaries", side_effect=lambda x: x),
+        ):
+            build(out_dir=tmp_path)
+        data = json.loads((tmp_path / "data.json").read_text())
+        assert data["entries"][0]["surfaces"] == ["copilot-app"]
+        assert data["entries"][0]["is_copilot"] is True
+        assert "GitHub Copilot App" in data["parity"]["surfaces"]
+        assert "GitHub Copilot App v1.1.29" in (tmp_path / "feed.xml").read_text()

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "changelog-feed"
 version = "1.0.0"
-description = "Static changelog aggregator for GitHub Copilot-supported IDEs, scored by importance"
+description = "Static changelog aggregator for GitHub Copilot surfaces and IDEs, scored by importance"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

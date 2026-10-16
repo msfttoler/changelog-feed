@@ -17,6 +17,7 @@ class ChangeEntry(BaseModel):
     link: str
     published: datetime
     tags: list[str] = []
+    surfaces: list[str] = []
     is_copilot: bool = False
     score: int = 0
     severity: str = "low"

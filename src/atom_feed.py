@@ -10,7 +10,7 @@ from .models import ChangeEntry
 
 _FEED_ID = "https://msfttoler.github.io/changelog-feed/"
 _FEED_TITLE = "Developer Productivity Changelog Feed"
-_FEED_SUBTITLE = "IDE & Copilot changelog tracker — scored by importance"
+_FEED_SUBTITLE = "Copilot surfaces & IDE changelog tracker — scored by importance"
 _FEED_LINK = "https://msfttoler.github.io/changelog-feed/"
 _FEED_SELF = "https://msfttoler.github.io/changelog-feed/feed.xml"
 
